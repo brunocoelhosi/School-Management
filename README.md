@@ -3,14 +3,12 @@
 Sistema completo de gestão escolar, academico e financeiro.
 <br>
 <br>
-<h3>Technologies: Python, Django, PostgreSql, Html, Css, Bootstrap.</h3>
+<h3>Tecnologias: </h3>
+Python, Django, PostgreSql, Html, Css, Bootstrap.</h3>
 
-Este projeto é uma API REST para atender a aplicação de uma carteira digital.
-
-Foram utilizadas as seguintes rotas:
 <br>
-<br>
-<h3>Rotas Cliente:</h3>
+<h3>Foram utilizadas as seguintes rotas:</h3>
+<h4>Rotas Cliente:</h3>
 
 `clientes/atualiza_cliente/` - utilizada para atualizar os dados de um cliente
 
@@ -20,7 +18,7 @@ Foram utilizadas as seguintes rotas:
 
 <br>
 <br>
-<h3>Rotas sistema Financeiro:</h3>
+<h4>Rotas sistema Financeiro:</h3>
 
 DELETE `financeiro/delete/<int:pagamento_id>/` - utilizada para excluir um pagamento realizado
 
