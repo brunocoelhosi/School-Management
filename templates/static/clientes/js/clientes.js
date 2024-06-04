@@ -260,7 +260,7 @@ function excluir_cliente(id) {
         .then(response => {
             if (response.ok) {
                 alert("Cliente excluído com sucesso.");
-                location.reload();    // Recarregar a lista de clientes após exclusão
+                location.reload(); // Recarregar a pagina apos exlcusao
             } else {
                 console.error('Erro ao excluir o cliente.');
                 alert("Erro ao excluir o cliente.");

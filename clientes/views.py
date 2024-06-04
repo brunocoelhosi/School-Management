@@ -170,10 +170,12 @@ def excluir_cliente2(request, id):
         return redirect(reverse('clientes'))
     
 def excluir_cliente(request, id):
-
+    if request.method == 'DELETE':
         try:
             cliente = Cliente.objects.get(id=id)
             cliente.delete()
             return JsonResponse({'status': '200', 'message': 'Cliente excluído com sucesso.'})
         except Cliente.DoesNotExist:
             return JsonResponse({'status': '404', 'message': 'Cliente não encontrado.'})
+    else:
+        return JsonResponse({'status': '400', 'message': 'Método não permitido.'})
