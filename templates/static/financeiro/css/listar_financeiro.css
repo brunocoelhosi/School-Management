@@ -1,0 +1,97 @@
+.card-dashboard{
+
+    background-color: var(--main-color);
+    width: 30%;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-align: center;
+    padding: 15px;
+    cursor:pointer;
+
+}
+.row{
+    align-items:center
+}
+
+.modal {
+    background: rgba(0, 0, 0, 0.5); 
+
+  }
+
+.modal-backdrop {
+    display: none;
+  }
+
+.modal-body{
+    color:black;
+}
+.modal-title{
+    color:#103f91;
+    
+}
+
+.text-card{
+
+    font-size: 15px;
+
+}
+
+
+.btn-principal{
+    color:white;
+    border: none;
+    background-color: var(--dark-color);
+    padding: 5px;
+    font-size: 30px;
+}
+
+
+
+/* Estilo para o título */
+.container h4 {
+    /*font-weight: bold;*/
+    margin-bottom: 20px;
+}
+
+/* Estilo para o select     width: 100%;*/
+#cliente-select {
+
+    padding: 5px;
+
+}
+
+/* Estilo para a lista de pagamentos */
+#financeiro-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilo para cada item da lista */
+#financeiro-list li {
+    background-color: #9299a0;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para o nome do cliente */
+#financeiro-list li strong {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* Estilo para os botões */
+#financeiro-list li button {
+
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+

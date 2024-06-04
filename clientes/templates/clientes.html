@@ -1,0 +1,398 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block 'head' %}
+    <link rel = "stylesheet" href="{% static 'clientes/css/clientes.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+        <div class="row">
+            <div onclick="exibir_form('1')" class="col-md card-dashboard">
+                <p class="text-card">Adicionar clientes</p>
+            </div> 
+
+            <div onclick="exibir_form('2')" class="col-md card-dashboard">
+                <p class="text-card">Atualizar clientes</p>
+            </div> 
+        </div>
+        <br>
+		<h4> Dados do Aluno</h4>
+        
+            <div id="adicionar-cliente" class="adicionar-cliente">
+                <form action="{% url 'clientes' %}" method="POST">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Nome Aluno:</p>
+                            <input type="text" class="form-control" placeholder="Nome Completo" name="nome" value="{{nome}}" required>
+                        </div>
+                        <div class="col-md">
+                            <p>CPF:</p>
+                            <input type="text" class="form-control" placeholder="___.___.___-__" name="cpf" value="{{cpf}}" required> 
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Data de nascimento:</p>
+                            <input type="date" class="form-control" placeholder="Data de nascimento" name="datanascimento" value="{{datanascimento}}">
+                        </div>
+                        <div class="col-md">
+                            <p>E-mail:</p>
+                            <input type="email" class="form-control" placeholder="nome@email.com" name="email" value="{{email}}">
+                        </div>
+                    </div>    
+                    <br>
+                    <p>Endereço:</p>
+                    <input type="text" class="form-control" placeholder="Endereço" name="endereco" value="{{endereco}}">
+
+                    <br>					
+					<div class="row">
+                        <div class="col-md">
+                            <p>Bairro:</p>
+                            <input type="text" class="form-control" placeholder="Bairro" name="bairro" value="{{bairro}}">
+                        </div>
+                        <div class="col-md">
+                            <p>CEP:</p>
+                            <input type="text" class="form-control" placeholder="Cep" name="cep" value="{{cep}}">
+                        </div>
+						<div class="col-md">
+                            <p>Cidade:</p>
+                            <input type="text" class="form-control" placeholder="Cidade" name="cidade" value="{{cidade}}">
+                        </div>
+						<div class="col-md">
+                            <p>Estado:</p>
+                            <select id="estado" class="form-control" placeholder="Estado" name="estado" value="{{estado}}">
+                                <option selected value="MG">Minas Gerais</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option> 
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+					<br>
+					<div class="row">
+                        <div class="col-md">
+                            <p>Telefone:</p>
+                            <input type="text" class="form-control" placeholder="Telefone" name="telefone" value="{{telefone}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Celular:</p>
+                            <input type="text" class="form-control" placeholder="Celular" name="celular" value="{{celular}}">
+                        </div>
+                    </div>
+
+					<hr style="background-color:gray;">
+					<br>
+		        <h4> Dados do Responsável</h4>
+	
+					<div class="row">
+                        <div class="col-md">
+                            <p>Nome do Responsavel:</p>
+                            <input type="text" class="form-control" placeholder="Nome do Responsável" name="nome_responsavel" value="{{nome_responsavel}}">
+                        </div>
+                        <div class="col-md">
+                            <p>CPF do Responsável:</p>
+                            <input type="text" class="form-control" placeholder="___.___.___-__" name="cpf_responsavel" value="{{cpf_responsavel}}">
+                        </div>
+                    </div>
+					<br>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Data de nascimento:</p>
+                            <input type="text" class="form-control" placeholder="Data de nascimento" name="nascimento_responsavel" value="{{nascimento_responsavel}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Telefone:</p>
+                            <input type="text" class="form-control" placeholder="Telefone" name="telefone_responsavel" value="{{telefone_responsavel}}">
+                        </div>
+                    </div>
+                    
+                    <hr style="background-color:gray;">
+					
+					<br>
+					<h4> Informações do Curso</h4>
+					
+					<br>
+					<p>Cursos:</p>
+                    <input type="text" class="form-control" placeholder="Cursos" name="cursos" value="{{cursos}}">
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Duração:</p>
+                            <input type="text" class="form-control" placeholder="Meses" name="duracao" value="{{duracao}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Data de inicio:</p>
+                            <input type="date" class="form-control" name="inicio" value="{{inicio}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Dias:</p>
+                            <input type="text" class="form-control" placeholder="Dias" name="dias_curso" value="{{dias_curso}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Horários:</p>
+                            <input type="text" class="form-control" placeholder="Horários" name="horarios_curso" value="{{horarios_curso}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Instrutor:</p>
+                            <input type="text" class="form-control" placeholder="Instrutor" name="instrutor" value="{{instrutor}}">
+                        </div>
+                    </div>
+       
+                    <hr style="background-color:gray;">
+                <br>
+                <h4> Informações de Pagamento</h4>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Valor da mensalidade:</p>
+                            <input type="text" id ="num1" class="form-control" placeholder="Valor da Mensalidade" name="mensalidade" onblur="calcular();" value="{{mensalidade}}">
+                        </div>
+                        <div class="col-md">
+                            <p>Quantidade de parcelas:</p>
+                            <input type="text" id ="num2" class="form-control" placeholder="Quantidade de Parcelas" name="parcelas" onblur="calcular();" value="{{parcelas}}">
+                            
+                        </div>
+                        <div class="col-md">
+                            <p>Dia para pagamento:</p>
+                            <input type="text" class="form-control" placeholder="Dia para pagamento" name="dia_pagamento" value="{{dia_pagamento}}">
+                        </div>
+                        <div class="col-md"> 
+                            <p>Valor total do curso:</p>
+                            <input name="total_calculo" id="total_calculo" placeholder="Valor total" class="form-control" value="" type="text">   
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" value="Cadastrar" class="btn btn-success">
+
+                </form>
+
+                <br>
+            </div>
+
+
+            <div id="att_cliente">
+                <p></p>
+                <select id="cliente-select"  onchange="dados_cliente()" class="form-control">
+                    {% for cliente in clientes %}
+                    <option value="{{cliente.id}}">{{cliente.nome}} </option>
+                    {% endfor %}
+                </select>
+                
+                <br>
+                <hr>
+
+                <div id="form-att-cliente">
+                    <input type="hidden" id="id">
+                    <h4> Dados do Aluno</h4>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Nome Aluno:</p>
+                            <input type="text" id = "nome" class="form-control">
+                        </div>
+                        <div class="col-md">
+                            <p>CPF:</p>
+                            <input id="cpf" type="text" class="form-control" > 
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Data de nascimento:</p>
+                            <input type="text" class="form-control" id="datanascimento">
+                        </div>
+                        <div class="col-md">
+                            <p>E-mail:</p>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                    </div>    
+                    <br>
+                    <p>Endereço:</p>
+                    <input id="endereco" type="text" class="form-control">
+
+                    <br>					
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Bairro:</p>
+                            <input type="text" class="form-control" id="bairro">
+                        </div>
+                        <div class="col-md">
+                            <p>CEP:</p>
+                            <input type="text" class="form-control" id="cep">
+                        </div>
+                        <div class="col-md">
+                            <p>Cidade:</p>
+                            <input type="text" class="form-control" id="cidade">
+                        </div>
+                        <div class="col-md">
+                            <p>Estado:</p>
+                            <select id="estado" class="form-control" id="estado">
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option> 
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                                <option value="EX">Estrangeiro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Telefone:</p>
+                            <input type="text" class="form-control" id="telefone">
+                        </div>
+                        <div class="col-md">
+                            <p>Celular:</p>
+                            <input type="text" class="form-control" id="celular">
+                        </div>
+                    </div>
+
+                    <hr style="background-color:gray;">
+                    <br>
+                    <h4> Dados do Responsável</h4>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Nome do Responsavel:</p>
+                            <input type="text" class="form-control" id="nome_responsavel">
+                        </div>
+                        <div class="col-md">
+                            <p>CPF Responsável:</p>
+                            <input type="text" class="form-control" id="cpf_responsavel">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Data de nascimento:</p>
+                            <input type="date" class="form-control" id="nascimento_responsavel">
+                        </div>
+                        <div class="col-md">
+                            <p>Telefone:</p>
+                            <input type="text" class="form-control" id="telefone_responsavel">
+                        </div>
+                    </div>
+                    
+                    <hr style="background-color:gray;">
+                    
+                    <br>
+                    <h4> Informações do Curso</h4>
+                    
+                    <br>
+                    <p>Cursos:</p>
+                    <input type="text" class="form-control" id="cursos">
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Duração:</p>
+                            <input type="text" class="form-control" id="duracao">
+                        </div>
+                        <div class="col-md">
+                            <p>Data de inicio:</p>
+                            <input type="date" class="form-control" id="inicio">
+                        </div>
+                        <div class="col-md">
+                            <p>Dias:</p>
+                            <input type="text" class="form-control" id="dias_curso">
+                        </div>
+                        <div class="col-md">
+                            <p>Horários:</p>
+                            <input type="text" class="form-control" id="horarios_curso">
+                        </div>
+                        <div class="col-md">
+                            <p>Instrutor:</p>
+                            <input type="text" class="form-control" id="instrutor">
+                        </div>
+                    </div>
+
+                    <hr style="background-color:gray;">
+                    <br>
+                    <h4> Informações de Pagamento</h4>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Valor da mensalidade:</p>
+                            <input type="text" class="form-control" id="mensalidade">
+                        </div>
+                        <div class="col-md">
+                            <p>Quantidade de parcelas:</p>
+                            <input type="text" class="form-control" id="parcelas">
+                            
+                        </div>
+                        <div class="col-md">
+                            <p>Dia para pagamento:</p>
+                            <input type="text" class="form-control" id="dia_pagamento">
+                        </div>
+                        <div class="col-md"> 
+                            <p>Valor total do curso:</p>
+                            <input id="total" class="form-control" type="text">   
+                        </div>
+                    </div>
+
+                    <div>
+                        <br>
+                        <input onclick="update_cliente()"  type="submit" value="salvar" class="btn btn-success" > 
+
+
+                        <a class = "btn btn-danger" data-method="DELETE" onclick="excluir_cliente()">Excluir</a>  
+
+                    </div>
+                    <br> 
+                </div>
+
+               
+            </div>
+
+    </div>
+    <script src="{% static 'clientes/js/clientes.js' %}"></script>
+{% endblock%}
+
