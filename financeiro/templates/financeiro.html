@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block 'title' %}Financeiro{% endblock %}
 {%block 'head' %}
     <link rel="stylesheet" href="{% static 'financeiro/css/listar_financeiro.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
         <h4> Histórico de Pagamentos</h4>
         <br>
         <div class="row">
-            <div>
+            <div class="col-9">
                 <select id="cliente-select"  onchange="dados_pagamento()" class="form-control" >
                     {% for cliente in clientes %}
                     <option value="{{cliente.id}}">{{cliente.nome}} </option>
@@ -30,11 +30,13 @@
         </div>
         
         <br>
-        <table class = "table" id="financeiro-list">
+        <div class = "table-responsive-xl"> 
+        <table class = "table" id="financeiro-table">
             
             <!-- Os dados financeiros relacionados serão inseridos aqui -->
         </table>
         
+        </div>
         <br>
 
 

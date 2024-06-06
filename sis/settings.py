@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'clientes',
     'financeiro',
     'mapahorario',
+    'usuarios'
 ]
 
 MIDDLEWARE = [
@@ -116,9 +117,11 @@ LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
-USE_I18N = True
+#USE_I18N = True
 
-USE_TZ = True
+#USE_TZ = True
+
+#SESSION_COOKIE_AGE: 10 * 5
 
 DATE_INPUT_FORMATS = ["%d.%m.%Y"]
 

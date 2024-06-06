@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block 'title' %}Alunos{% endblock %}
 {%block 'head' %}
     <link rel = "stylesheet" href="{% static 'clientes/css/clientes.css' %}">
 {% endblock %}
@@ -9,11 +9,11 @@
     <div class="container">
         <div class="row">
             <div onclick="exibir_form('1')" class="col-md card-dashboard">
-                <p class="text-card">Adicionar clientes</p>
+                <p class="text-card">Cadastrar Aluno</p>
             </div> 
 
             <div onclick="exibir_form('2')" class="col-md card-dashboard">
-                <p class="text-card">Atualizar clientes</p>
+                <p class="text-card">Atualizar Cadastro</p>
             </div> 
         </div>
         <br>

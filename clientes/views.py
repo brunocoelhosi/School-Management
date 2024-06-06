@@ -11,76 +11,81 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def clientes(request):
-    if request.method == "GET":
-        clientes_list = Cliente.objects.all()
-        return render(request, 'clientes.html', {'clientes':clientes_list})
-    elif request.method == "POST":
-        nome = request.POST.get('nome')
-        cpf = request.POST.get('cpf')
-        datanascimento = request.POST.get('datanascimento')
-        email = request.POST.get('email')
-        endereco = request.POST.get('endereco')
-        bairro = request.POST.get('bairro')
-        cep = request.POST.get('cep')
-        cidade = request.POST.get('cidade')
-        estado = request.POST.get('estado')
-        telefone = request.POST.get('telefone')
-        celular = request.POST.get('celular')
-        nome_responsavel = request.POST.get('nome_responsavel')
-        cpf_responsavel = request.POST.get('cpf_responsavel')
-        nascimento_responsavel = request.POST.get('nascimento_responsavel')
-        telefone_responsavel = request.POST.get('telefone_responsavel')
-        cursos = request.POST.get('cursos')
-        duracao = request.POST.get('duracao')
-        inicio = request.POST.get('inicio')
-        dias_curso = request.POST.get('dias_curso')
-        horarios_curso = request.POST.get('horarios_curso')
-        instrutor = request.POST.get('instrutor')
-        mensalidade = request.POST.get('mensalidade')
-        parcelas = request.POST.get('parcelas')
-        dia_pagamento = request.POST.get('dia_pagamento')
-        total = request.POST.get('total')
 
-        cliente = Cliente.objects.filter(cpf=cpf)
-
-        if cliente.exists():
-                return HttpResponse('Cliente já cadastrado!')
-                #return render(request, 'clientes.html')
+    if request.session.get('logado'):
         
-        
-        
-        cliente = Cliente (
-            nome = nome,
-            cpf = cpf,
-            datanascimento = datanascimento,
-            email = email,
-            endereco = endereco,
-            bairro = bairro,
-            cep = cep,
-            cidade = cidade,
-            estado = estado,
-            telefone = telefone,
-            celular = celular,
-            nome_responsavel = nome_responsavel,
-            cpf_responsavel = cpf_responsavel,
-            nascimento_responsavel = nascimento_responsavel,
-            telefone_responsavel = telefone_responsavel,
-            cursos = cursos,
-            duracao = duracao,
-            inicio = inicio,
-            dias_curso = dias_curso,
-            horarios_curso = horarios_curso,
-            instrutor = instrutor,
-            mensalidade = mensalidade,
-            parcelas = parcelas,
-            dia_pagamento = dia_pagamento,
-            total = total,
-        )
+        if request.method == "GET":
+            clientes_list = Cliente.objects.all()
+            return render(request, 'clientes.html', {'clientes':clientes_list})
+        elif request.method == "POST":
+            nome = request.POST.get('nome')
+            cpf = request.POST.get('cpf')
+            datanascimento = request.POST.get('datanascimento')
+            email = request.POST.get('email')
+            endereco = request.POST.get('endereco')
+            bairro = request.POST.get('bairro')
+            cep = request.POST.get('cep')
+            cidade = request.POST.get('cidade')
+            estado = request.POST.get('estado')
+            telefone = request.POST.get('telefone')
+            celular = request.POST.get('celular')
+            nome_responsavel = request.POST.get('nome_responsavel')
+            cpf_responsavel = request.POST.get('cpf_responsavel')
+            nascimento_responsavel = request.POST.get('nascimento_responsavel')
+            telefone_responsavel = request.POST.get('telefone_responsavel')
+            cursos = request.POST.get('cursos')
+            duracao = request.POST.get('duracao')
+            inicio = request.POST.get('inicio')
+            dias_curso = request.POST.get('dias_curso')
+            horarios_curso = request.POST.get('horarios_curso')
+            instrutor = request.POST.get('instrutor')
+            mensalidade = request.POST.get('mensalidade')
+            parcelas = request.POST.get('parcelas')
+            dia_pagamento = request.POST.get('dia_pagamento')
+            total = request.POST.get('total')
 
-        cliente.save()
+            cliente = Cliente.objects.filter(cpf=cpf)
 
-    return HttpResponse('Cliente cadastrado com sucesso!')
+            if cliente.exists():
+                    return HttpResponse('Cliente já cadastrado!')
+                    #return render(request, 'clientes.html')
+            
+            
+            
+            cliente = Cliente (
+                nome = nome,
+                cpf = cpf,
+                datanascimento = datanascimento,
+                email = email,
+                endereco = endereco,
+                bairro = bairro,
+                cep = cep,
+                cidade = cidade,
+                estado = estado,
+                telefone = telefone,
+                celular = celular,
+                nome_responsavel = nome_responsavel,
+                cpf_responsavel = cpf_responsavel,
+                nascimento_responsavel = nascimento_responsavel,
+                telefone_responsavel = telefone_responsavel,
+                cursos = cursos,
+                duracao = duracao,
+                inicio = inicio,
+                dias_curso = dias_curso,
+                horarios_curso = horarios_curso,
+                instrutor = instrutor,
+                mensalidade = mensalidade,
+                parcelas = parcelas,
+                dia_pagamento = dia_pagamento,
+                total = total,
+            )
 
+            cliente.save()
+
+        return HttpResponse('Cliente cadastrado com sucesso!')
+
+    else:
+        return redirect('/auth/login/?status=2')
 
 def atualiza_cliente(request):
     id_cliente = request.POST.get('id_cliente')

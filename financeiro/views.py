@@ -11,39 +11,46 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import FormFinanceiro
 
 def financeiro(request):
-    if request.method == "GET":
-        id_teste = request.GET.get('id_js')
-        print('id python:', id_teste)
+    
+    if request.session.get('logado'):
 
-        clientes_list = Cliente.objects.all()
-        
-        if id_teste:
-            teste_list = list(Financeiro.objects.all().values('id', 'cliente_id', 'cliente__nome','data_pagamento',
-                                                               'data_vencimento','descricao_pagamento','valor_mensalidade','valor_pago').filter(cliente_id=id_teste))
-        else:
-            teste_list = []
+        if request.method == "GET":
+            id_teste = request.GET.get('id_js')
+            print('id python:', id_teste)
 
-        # Verificar se a solicitação é AJAX e retornar JSON
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            return JsonResponse({'testes': teste_list})
+            clientes_list = Cliente.objects.all()
+            
+            if id_teste:
+                teste_list = list(Financeiro.objects.all().values('id', 'cliente_id', 'cliente__nome','data_pagamento',
+                                                                'data_vencimento','descricao_pagamento','valor_mensalidade','valor_pago').filter(cliente_id=id_teste))
+            else:
+                teste_list = []
 
-        return render(request, 'financeiro.html', {'clientes': clientes_list,'testes': teste_list})
+            # Verificar se a solicitação é AJAX e retornar JSON
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'testes': teste_list})
 
-    elif request.method == "POST":
-        data = json.loads(request.body)
-        id_java = data.get('id_java')
+            return render(request, 'financeiro.html', {'clientes': clientes_list,'testes': teste_list})
+    
 
-        # Salvar id_java na sessão (opcional, se necessário)
-        request.session['id_java'] = id_java
+        elif request.method == "POST":
+            data = json.loads(request.body)
+            id_java = data.get('id_java')
 
-        # Processar os dados recebidos
-        result = f"ID do cliente: {id_java}"
+            # Salvar id_java na sessão (opcional, se necessário)
+            request.session['id_java'] = id_java
 
-        response = {
-            'result': result
-        }
+            # Processar os dados recebidos
+            result = f"ID do cliente: {id_java}"
 
-        return JsonResponse(response)
+            response = {
+                'result': result
+            }
+
+            return JsonResponse(response)
+    
+    else:
+        return redirect('/auth/login/?status=2')
     
 def delete_financeiro(request, pagamento_id):
     if request.method == "DELETE":

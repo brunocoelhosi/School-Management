@@ -60,33 +60,12 @@
 
 }
 
-/* Estilo para a lista de pagamentos */
-#financeiro-list {
-    list-style-type: none;
-    padding: 0;
-}
 
-/* Estilo para cada item da lista */
-#financeiro-list li {
-    background-color: #9299a0;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-}
 
-/* Estilo para o nome do cliente */
-#financeiro-list li strong {
-    font-size: 1.2em;
-    margin-bottom: 5px;
-}
+/* Estilo para os botões 
+#financeiro-table button {
 
-/* Estilo para os botões */
-#financeiro-list li button {
-
-    padding: 5px 10px;
+    padding: 50px 10px;
     border: none;
     border-radius: 5px;
     background-color: #dc3545;
@@ -95,3 +74,4 @@
     margin-top: 10px;
 }
 
+*/

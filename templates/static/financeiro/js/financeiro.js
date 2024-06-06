@@ -2,7 +2,7 @@ function dados_pagamento() {
     const clienteId = document.getElementById('cliente-select').value;
     
     if (clienteId === "") {
-        document.getElementById('financeiro-list').innerHTML = "";
+        document.getElementById('financeiro-table').innerHTML = "";
         return;
     }
 
@@ -13,21 +13,24 @@ function dados_pagamento() {
     })
     .then(response => response.json())
     .then(data => {
-        const financeiroList = document.getElementById('financeiro-list');
+        const financeiroList = document.getElementById('financeiro-table');
         financeiroList.innerHTML = '';
-           const tr2 = document.createElement('tr');
-        tr2.innerHTML = `
-            <tr>
-                <td>Código do Pagamento:</td>
-                <td>Data do Vencimento: </td>
-                <td>Data do Pagamento: </td>
-                <td>Valor da Mensalidade: </td>
-                <td>Descrição do pagamento: </td>   
-                <td>Valor Pago:</td>
-                
-            </tr>
-            `;
-        financeiroList.appendChild(tr2);
+           
+        const thead = document.createElement('tr');
+        thead.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Código do Pagamento:</th>
+                    <th>Data do Vencimento: </th>
+                    <th>Data do Pagamento: </th>
+                    <th>Valor da Mensalidade: </th>
+                    <th>Descrição do pagamento: </th>   
+                    <th>Valor Pago:</th>
+                </tr>
+            </thead>
+        `;
+        financeiroList.appendChild(thead);
+
         data.testes.forEach(teste => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
@@ -38,7 +41,7 @@ function dados_pagamento() {
                 <td>${teste.valor_mensalidade}</td>
                 <td>${teste.descricao_pagamento}</td>   
                 <td>${teste.valor_pago}</td>
-                <td><a class = "btn btn-danger" onclick="excluir_pagamento(${teste.id});" ">Excluir</a></td>
+                <td><button class = "btn btn-danger" onclick="excluir_pagamento(${teste.id});" ">Excluir</button></td>
             </tr>
             `;
             financeiroList.appendChild(tr);
