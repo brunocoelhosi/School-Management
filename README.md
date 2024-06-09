@@ -10,15 +10,15 @@ Python, Django, PostgreSql, Html, Css, Bootstrap.</h3>
 <h3>Foram utilizadas as seguintes rotas:</h3>
 <h4>Rotas Cliente:</h3>
 
-`clientes/atualiza_cliente/` - utilizada para atualizar os dados de um cliente
+POST `clientes/atualiza_cliente/` - utilizada para cadastrar um cliente
 
 `update_cliente/<int:id>` - utilizada para atualizar os dados de um cliente
 
 `excluir_cliente/<int:id>` - utilizada para excluir o cadastro de um cliente
 
+<br>  
 <br>
-<br>
-<h4>Rotas sistema Financeiro:</h3>
+<h4>Rotas Sistema Financeiro:</h3>
 
 DELETE `financeiro/delete/<int:pagamento_id>/` - utilizada para excluir um pagamento realizado
 
