@@ -1,0 +1,61 @@
+table.comicGreen {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    border: 2px solid #0D3378;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin-top: 50px;
+  }
+  table.comicGreen td, table.comicGreen th {
+    border: 1px solid #0A2478;
+    padding: 3px 2px;
+  }
+  table.comicGreen tbody td {
+    font-size: 19px;
+    font-weight: bold;
+    color: #000000;
+  }
+  table.comicGreen tr:nth-child(even) {
+    background: var(--main-color);
+  }
+  table.comicGreen thead {
+    background: #120978;
+    background: -moz-linear-gradient(top, #4d469a 0%, #292185 66%, #120978 100%);
+    background: -webkit-linear-gradient(top, #4d469a 0%, #292185 66%, #120978 100%);
+    background: linear-gradient(to bottom, #4d469a 0%, #292185 66%, #120978 100%);
+    border-bottom: 1px solid #444444;
+  }
+  table.comicGreen thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: left;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.comicGreen thead th:first-child {
+    border-left: none;
+  }
+  
+  table.comicGreen tfoot td {
+    font-size: 21px;
+  }
+
+
+  .card-dashboard{
+
+    background-color: var(--main-color);
+    width: 50%;
+    margin-left: 10px;
+    margin-top: 40px;
+    text-align: center;
+    padding: 15px;
+    cursor:pointer;
+
+}
+
+.text-card{
+
+    font-size: 25px;
+
+}

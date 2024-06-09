@@ -25,23 +25,25 @@ function dados_pagamento() {
                     <th>Data do Pagamento: </th>
                     <th>Valor da Mensalidade: </th>
                     <th>Descrição do pagamento: </th>   
+                    <th>Valor com juros: </th> 
                     <th>Valor Pago:</th>
                 </tr>
             </thead>
         `;
         financeiroList.appendChild(thead);
 
-        data.testes.forEach(teste => {
+        data.financeiros.forEach(financeiro => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
             <tr>
-                <td>${teste.id}</td>
-                <td>${teste.data_vencimento}</td>
-                <td>${teste.data_pagamento}</td>
-                <td>${teste.valor_mensalidade}</td>
-                <td>${teste.descricao_pagamento}</td>   
-                <td>${teste.valor_pago}</td>
-                <td><button class = "btn btn-danger" onclick="excluir_pagamento(${teste.id});" ">Excluir</button></td>
+                <td>${financeiro.id}</td>
+                <td>${financeiro.data_vencimento}</td>
+                <td>${financeiro.data_pagamento}</td>
+                <td>${financeiro.valor_mensalidade}</td>
+                <td>${financeiro.descricao_pagamento}</td>   
+                <td>${financeiro.valor_com_juros}</td> 
+                <td>${financeiro.valor_pago}</td>
+                <td><button class = "btn btn-danger" onclick="excluir_pagamento(${financeiro.id});" ">Excluir</button></td>
             </tr>
             `;
             financeiroList.appendChild(tr);

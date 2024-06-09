@@ -18,7 +18,6 @@
                 <select id="cliente-select"  onchange="dados_pagamento()" class="form-control" >
                     {% for cliente in clientes %}
                     <option value="{{cliente.id}}">{{cliente.nome}} </option>
-                    
                     {% endfor %}
                 </select>
             </div> 

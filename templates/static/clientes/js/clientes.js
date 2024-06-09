@@ -63,7 +63,7 @@ function dados_cliente(){
         cidade = document.getElementById('cidade')
         cidade.value = data['cliente']['cidade']
 
-        estado = document.getElementById('estado')
+        estado = document.getElementById('estado2')
         estado.value = data['cliente']['estado']
 
         telefone = document.getElementById('telefone')
@@ -111,7 +111,7 @@ function dados_cliente(){
         dia_pagamento = document.getElementById('dia_pagamento')
         dia_pagamento.value = data['cliente']['dia_pagamento']
 
-        total = document.getElementById('total')
+        total = document.getElementById('total_calculo2')
         total.value = data['cliente']['total']            
      
     })
@@ -134,7 +134,7 @@ function update_cliente(){
     bairro = document.getElementById('bairro').value
     cep = document.getElementById('cep').value
     cidade = document.getElementById('cidade').value
-    estado = document.getElementById('estado').value
+    estado = document.getElementById('estado2').value
     telefone = document.getElementById('telefone').value
     celular = document.getElementById('celular').value
     nome_responsavel = document.getElementById('nome_responsavel').value
@@ -150,7 +150,7 @@ function update_cliente(){
     mensalidade = document.getElementById('mensalidade').value
     parcelas = document.getElementById('parcelas').value
     dia_pagamento = document.getElementById('dia_pagamento').value
-    total = document.getElementById('total').value
+    total = document.getElementById('total_calculo2').value
     id = document.getElementById('id').value
 
     fetch('/clientes/update_cliente/' + id, {
@@ -220,7 +220,7 @@ function update_cliente(){
             //console.log('Dados alterados com sucesso')
             //var resultado = document.getElementById("resultado_cadastro")
             //resultado.innerHTML = '<div id="resultado_cadastro" class= "alert alert-success" role="alert" style="text-align:center">Cadastro realizado com sucesso!</div>'
-            alert("Dados alterados com sucesso!");
+            alert("Dados atualizados com sucesso!");
         }else{
             alert('Ocorreu algum erro');
         }
@@ -260,7 +260,10 @@ function excluir_cliente(id) {
         .then(response => {
             if (response.ok) {
                 alert("Cliente excluído com sucesso.");
-                location.reload(); // Recarregar a pagina apos exlcusao
+                //location.reload(); // Recarregar a pagina apos exlcusao
+                //redirect
+                window.history.pushState({}, document.title, "/clientes/");
+                location.reload();
             } else {
                 console.error('Erro ao excluir o cliente.');
                 alert("Erro ao excluir o cliente.");
@@ -291,4 +294,9 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function alerta(){
+
+    alert("teste")
 }
