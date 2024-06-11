@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'financeiro',
     'mapahorario',
     'usuarios',
+    'faturamento',
 ]
 
 MIDDLEWARE = [
