@@ -24,7 +24,7 @@ Python, Django, PostgreSql, Html, Css, Bootstrap.</h3>
 
 <h4>Faturamento:</h3>
 
-`Apresentação do faturamento diário, mensal e anula através de gráficos.`
+`Apresentação do faturamento diário, mensal e anual através de gráficos.`
 <br>
 
 
