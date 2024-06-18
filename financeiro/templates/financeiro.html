@@ -3,7 +3,6 @@
 {% block 'title' %}Financeiro{% endblock %}
 {%block 'head' %}
     <link rel="stylesheet" href="{% static 'financeiro/css/listar_financeiro.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 {% endblock %}
 
 {% block 'dashboard' %}
@@ -13,16 +12,20 @@
         <br>
         <h4> Histórico de Pagamentos</h4>
         <br>
-        <div class="row">
-            <div class="col-9">
-                <select id="cliente-select"  onchange="dados_pagamento()" class="form-control" >
-                    {% for cliente in clientes %}
-                    <option value="{{cliente.id}}">{{cliente.nome}} </option>
-                    {% endfor %}
-                </select>
-            </div> 
+        
+        <div class="row justify-content-center">
 
-            <div  class="col-md card-dashboard">
+            <div class="col-9">
+                <input id="list" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_pagamento() ">
+                <datalist id="my-list">
+                    {% for cliente in clientes %}
+                    <option data-value="{{cliente.id}}" value="{{cliente.nome}}"> ID: {{cliente.id}}</option>
+                    {% endfor %}
+                </datalist>
+                <input type="hidden" name="answer" id="answerInput-hidden">
+            </div>
+       
+            <div  class="col card-dashboard">
                 <p href="#" data-toggle="modal" data-target="#novoPagamentoModal" class="text-card" >Cadastrar Pagamento</p>
             </div> 
 
@@ -31,7 +34,6 @@
         <br>
         <div class = "table-responsive-xl"> 
         <table class = "table" id="financeiro-table">
-            
             <!-- Os dados financeiros relacionados serão inseridos aqui -->
         </table>
         
@@ -68,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label for="data-pagamento">Data do Pagamento:</label>
-                            <input type="date" class="form-control" id="data-pagamento" onblur="calcular_juros();" required>
+                            <input type="date" class="form-control" id="data-pagamento" timezone="[[timezone]]" onblur="calcular_juros();" required>
                         </div>
                         <div class="form-group">
                             <label for="valor-mensalidade">Valor da mensalidade:</label>
@@ -97,13 +99,8 @@
 
 
     <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <script src="{% static 'financeiro/js/financeiro.js' %}"></script>
-
-    
+   
 {% endblock%}
 
 

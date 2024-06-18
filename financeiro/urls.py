@@ -15,6 +15,7 @@ urlpatterns = [
     #path('retorna_dados/', views.retorna_dados, name = "retorna_dados"),
     path('delete/<int:pagamento_id>/', views.delete_financeiro, name='delete_financeiro'),
     path('novo_pagamento/', views.novo_pagamento, name = "novo_pagamento"),
+    path('comprovante_generator/<int:pagamento_id>/', views.comprovante_generator, name = "comprovante_generator"),
 
 
 ]

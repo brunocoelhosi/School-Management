@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 from django.contrib import messages
 from django.contrib.messages import constants
+from django.conf.locale.pt_BR import formats as pt_BR_formats
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -108,15 +110,17 @@ LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
-#USE_I18N = True
+USE_I18N = True
 
-#USE_TZ = True
+USE_TZ = True
 
+USE_L10N = False
 #SESSION_COOKIE_AGE: 10 * 5
 
-DATE_INPUT_FORMATS = ["%d.%m.%Y"]
+pt_BR_formats.DATE_FORMAT = "%d/%m/%Y"
 
-DATE_FORMAT =  "%d/%m/%Y"
+pt_BR_formats.DATE_INPUT_FORMATS = ["%d.%m.%Y"]
+
 
 
 # Static files (CSS, JavaScript, Images)

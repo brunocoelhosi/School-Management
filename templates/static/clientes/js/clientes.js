@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+    dados_cliente();
+    calcular();
+    limpar_select()
+});
+
 function exibir_form(tipo){
 
     add_cliente = document.getElementById('adicionar-cliente')
@@ -16,9 +22,12 @@ function exibir_form(tipo){
 
 
 function dados_cliente(){
-    cliente = document.getElementById('cliente-select')
+
+    // pegar id cliente na list/select
+    var shownVal = document.getElementById("cliente_select").value;
+    var id_cliente = document.querySelector("#my-list option[value='"+shownVal+"']").dataset.value;
+
     csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
-    id_cliente = cliente.value
 
     data = new FormData()
     data.append('id_cliente', id_cliente)
@@ -119,10 +128,7 @@ function dados_cliente(){
 
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    dados_cliente();
-    calcular();
-});
+
 
 function update_cliente(){
 
@@ -299,4 +305,8 @@ function getCookie(name) {
 function alerta(){
 
     alert("teste")
+}
+
+function limpar_select(){
+    cliente_select.value = '';
 }

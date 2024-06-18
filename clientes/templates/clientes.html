@@ -6,11 +6,9 @@
 {% endblock %}
 
 {% block 'dashboard' %}
-   
-    
+       
     <div class="container">
 
- 
         {% if messages %}
             {%for i in messages %}
                 <div class = "alert {{i.tags}}" role="alert">
@@ -23,28 +21,13 @@
         {% endif %}
 
 
-        {% if status == '0' %}
-        <script>
-            alert("Usuário cadastrado com sucesso!");
-            window.history.pushState({}, document.title, "/clientes/");
-            //location.reload();
 
-        </script>
-        {% endif %}
-
-        {% if status == '1' %}
-
-            <script>
-                alert("Usuário já cadastrado no sistema!");
-            </script>
-        {% endif %}
-
-        <div class="row">
-            <div onclick="exibir_form('1')" class="col-md card-dashboard">
+        <div class="row justify-content-center">
+            <div onclick="exibir_form('1')" class="col-sm card-dashboard">
                 <p class="text-card">Cadastrar Aluno</p>
             </div> 
 
-            <div onclick="exibir_form('2')" class="col-md card-dashboard">
+            <div onclick="exibir_form('2')" class="col-sm card-dashboard">
                 <p class="text-card">Atualizar Cadastro</p>
             </div> 
         </div>
@@ -129,7 +112,7 @@
 					<div class="row">
                         <div class="col-md">
                             <p>Telefone:</p>
-                            <input type="text" class="form-control" placeholder="Telefone" name="telefone" value="{{telefone}}">
+                            <input type="text" class="form-control" placeholder="(00) 00000-0000" name="telefone" value="{{telefone}}">
                         </div>
                         <div class="col-md">
                             <p>Celular:</p>
@@ -229,13 +212,25 @@
 
 
             <div id="att_cliente">
-
+<!--
                 <p></p>
                 <select id="cliente-select"  onchange="dados_cliente()" class="form-control">
                     {% for cliente in clientes %}
                     <option value="{{cliente.id}}">{{cliente.nome}} </option>
                     {% endfor %}
                 </select>
+-->
+                
+                
+                    <input id="cliente_select" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_cliente()">
+                    <datalist id="my-list">
+                        {% for cliente in clientes %}
+                        <option data-value="{{cliente.id}}" value="{{cliente.nome}}"> ID: {{cliente.id}}</option>
+                        {% endfor %}
+                    </datalist>
+                    <input type="hidden" name="answer" id="answerInput-hidden">
+              
+
                 
                 <br>
                 <hr>
