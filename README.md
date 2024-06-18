@@ -7,22 +7,24 @@ Sistema completo de gestão escolar, academico e financeiro.
 Python, Django, PostgreSql, Html, Css, Bootstrap.</h3>
 
 <br>
-<h3>Foram utilizadas as seguintes rotas:</h3>
-<h4>Rotas Cliente:</h3>
+<h3>Funcionalidades</h3>
+<h4>Cliente:</h3>
 
-POST `clientes/atualiza_cliente/` - utilizada para cadastrar um cliente
+`Cadastro, exclusão e update dos dados dos alunos.`
 
-`update_cliente/<int:id>` - utilizada para atualizar os dados de um cliente
+<h4>Financeiro:</h3>
 
-`excluir_cliente/<int:id>` - utilizada para excluir o cadastro de um cliente
+`Cadastro, exclusão e update dos dados de pagamento realizado pelos alunos.`
 
-<br>  
-<br>
-<h4>Rotas Sistema Financeiro:</h3>
+`Geração de um recibo em PDF de um pagamento realizado.`
 
-DELETE `financeiro/delete/<int:pagamento_id>/` - utilizada para excluir um pagamento realizado
+<h4>Mapa de Horário:</h3>
 
-POST `financeiro/novo_pagamento/` - utilizada para cadastrar um novo pagamento 
+`Criação de um mapa de horário para visualização dos horários disponíveis na sala de aula.`
+
+<h4>Faturamento:</h3>
+
+`Apresentação do faturamento diário, mensal e anual através de gráficos.`
 <br>
 
 
