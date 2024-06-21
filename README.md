@@ -16,7 +16,7 @@ Python, Django, PostgreSql, Html, Css, Bootstrap.</h3>
 
 `Cadastro, exclusão e update dos dados de pagamento realizado pelos alunos.`
 
-`Geração de um recibo em PDF de um pagamento realizado.`
+`Geração recibos em PDF dos pagamentos recebidos.`
 
 <h4>Mapa de Horário:</h3>
 
