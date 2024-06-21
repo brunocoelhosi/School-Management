@@ -37,6 +37,7 @@ def clientes(request):
         nascimento_responsavel = request.POST.get('nascimento_responsavel')
         telefone_responsavel = request.POST.get('telefone_responsavel')
         cursos = request.POST.get('cursos')
+        situacao = request.POST.get('situacao')
         duracao = request.POST.get('duracao')
         inicio = request.POST.get('inicio')
         dias_curso = request.POST.get('dias_curso')
@@ -72,6 +73,7 @@ def clientes(request):
             nascimento_responsavel = nascimento_responsavel,
             telefone_responsavel = telefone_responsavel,
             cursos = cursos,
+            situacao = situacao,
             duracao = duracao,
             inicio = inicio,
             dias_curso = dias_curso,
@@ -121,6 +123,7 @@ def update_cliente(request, id):
     nascimento_responsavel = body['nascimento_responsavel']
     telefone_responsavel = body['telefone_responsavel']
     cursos = body['cursos']
+    situacao = body['situacao']
     duracao = body['duracao']
     inicio = body['inicio']
     dias_curso = body['dias_curso']
@@ -149,6 +152,7 @@ def update_cliente(request, id):
         cliente.nascimento_responsavel = nascimento_responsavel
         cliente.telefone_responsavel = telefone_responsavel
         cliente.cursos = cursos
+        cliente.situacao = situacao
         cliente.duracao = duracao
         cliente.inicio = inicio
         cliente.dias_curso = dias_curso
@@ -162,7 +166,7 @@ def update_cliente(request, id):
         cliente.save()
         return JsonResponse({'status': '200', 'nome': nome, 'cpf':cpf, 'datanascimento':datanascimento, 'email': email, 'endereco': endereco, 'bairro': bairro, 'cep': cep,
                              'cidade': cidade, 'estado': estado, 'telefone': telefone, 'celular': celular, 'nome_responsavel': nome_responsavel, 'cpf_responsavel': cpf_responsavel,
-                             'nascimento_responsavel': nascimento_responsavel, 'telefone_responsavel': telefone_responsavel, 'cursos': cursos, 'duracao': duracao, 'inicio': inicio,
+                             'nascimento_responsavel': nascimento_responsavel, 'telefone_responsavel': telefone_responsavel, 'cursos': cursos, 'situacao': situacao, 'duracao': duracao, 'inicio': inicio,
                              'dias_curso': dias_curso, 'horarios_curso': horarios_curso, 'instrutor': instrutor, 'mensalidade': mensalidade, 'parcelas':parcelas, 'dia_pagamento':dia_pagamento, 'total': total})
     except:
         return JsonResponse({'status': '500'})

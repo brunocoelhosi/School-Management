@@ -20,6 +20,7 @@ class Cliente(models.Model):
     telefone_responsavel = models.CharField(max_length=50)
 
     cursos = models.CharField(max_length=50)
+    situacao = models.CharField(max_length=50)
     duracao = models.CharField(max_length=50)
     inicio = models.DateField(null=True, blank=True)
 

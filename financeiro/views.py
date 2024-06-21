@@ -2,14 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
 
-from django.contrib import messages
-from django.contrib import messages
-from django.contrib.messages import constants
 from django.contrib.auth.decorators import login_required
-
 import json
 
 from .models import Financeiro
@@ -18,8 +12,7 @@ from .models import Cliente
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
-from reportlab.lib import colors
-from reportlab.lib.units import inch
+
 
 @login_required(login_url = '/auth/login')
 def financeiro(request):  
@@ -31,9 +24,20 @@ def financeiro(request):
         clientes_list = Cliente.objects.all()
         
         if id_teste:
-            financeiro_list = list(Financeiro.objects.all().values('id', 'cliente_id', 'cliente__nome','data_pagamento',
-                                                            'data_vencimento','descricao_pagamento','valor_mensalidade',
-                                                            'valor_com_juros','valor_pago').filter(cliente_id=id_teste))
+            financeiro_list = list(Financeiro.objects.all().values('id',
+                                                                    'cliente_id',
+                                                                    'cliente__nome',
+                                                                    'data_pagamento',
+                                                                    'data_vencimento',
+                                                                    'descricao_pagamento',
+                                                                    'valor_mensalidade',
+                                                                    'valor_com_juros',
+                                                                    'valor_pago').filter(cliente_id=id_teste))
+            
+            for financeiro in financeiro_list:
+                financeiro['data_pagamento'] = financeiro['data_pagamento'].strftime('%d/%m/%Y') if financeiro['data_pagamento'] else None
+                financeiro['data_vencimento'] = financeiro['data_vencimento'].strftime('%d/%m/%Y') if financeiro['data_vencimento'] else None
+
         else:
             financeiro_list = []
 
@@ -70,6 +74,7 @@ def delete_financeiro(request, pagamento_id):
     else:
         return JsonResponse({'error': 'Método não permitido.'}, status=405)
 
+
 def novo_pagamento(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -81,10 +86,17 @@ def novo_pagamento(request):
         valor_com_juros=data.get('valor_com_juros')
         valor_pago = data.get('valor_pago')
 
+
+
         cliente = get_object_or_404(Cliente, id=cliente_id)
-        financeiro = Financeiro.objects.create(cliente=cliente, data_pagamento=data_pagamento,
-                                               data_vencimento = data_vencimento, valor_mensalidade = valor_mensalidade,
-                                               descricao_pagamento=descricao_pagamento,valor_com_juros=valor_com_juros, valor_pago=valor_pago)
+
+        financeiro = Financeiro.objects.create(cliente=cliente,
+                                               data_pagamento=data_pagamento,
+                                               data_vencimento = data_vencimento,
+                                               valor_mensalidade = valor_mensalidade,
+                                               descricao_pagamento=descricao_pagamento,
+                                               valor_com_juros=valor_com_juros,
+                                               valor_pago=valor_pago)
         financeiro.save()
 
         return JsonResponse({'message': 'Pagamento criado com sucesso.'})
@@ -149,12 +161,15 @@ def comprovante_generator(request, pagamento_id):
             'cliente__instrutor','cliente__mensalidade','cliente__parcelas','cliente__dia_pagamento','cliente__total',
         ).first()
 
+        dados_pagamento['data_pagamento'] = dados_pagamento['data_pagamento'].strftime('%d/%m/%Y')
+        dados_pagamento['data_vencimento'] = dados_pagamento['data_vencimento'].strftime('%d/%m/%Y')
+
         if not dados_pagamento:
             return HttpResponse('Pagamento não encontrado', status=404)
 
         # Criar o PDF
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="comprovante_"{dados_pagamento['cliente__nome']}_{pagamento_id}".pdf"'
+        #response['Content-Disposition'] = f'attachment; filename="comprovante_"{dados_pagamento['cliente__nome']}_{pagamento_id}".pdf"'
 
         logo = "templates\static\logo.jpg"
         carimbo = "templates\static\carimbo.png"

@@ -1,26 +1,15 @@
-
-
 function limpar_select(){
     list.value = '';
 }
 
 function dados_pagamento() {
-    //const clienteId = document.getElementById('list').value;
-    //console.log(clienteId)
-
-   // setTimeout(function () {
-     //   document.querySelector('a').style.display = 'none';
-   // }, 10);
-  
-    //setTimeout("document.querySelector('a').style.display = 'none';", 10);
-
-
-    var shownVal = document.getElementById("list").value;
-    console.log(shownVal)
+   
+    var nomeCliente = document.getElementById("list").value;
+    console.log(nomeCliente)
     //var clienteId = document.querySelector("#my-list option[value='"+shownVal+"']").dataset.value;
 
     teste = function(){
-        return document.querySelector("#my-list option[value='"+shownVal+"']").dataset.value;
+        return document.querySelector("#my-list option[value='"+nomeCliente+"']").dataset.value;
     };
 
     var clienteId = teste();
@@ -60,6 +49,7 @@ function dados_pagamento() {
         financeiroList.appendChild(thead);
 
         data.financeiros.forEach(financeiro => {
+
             const tr = document.createElement('tr');
             tr.innerHTML = `
             <tr>
@@ -70,7 +60,8 @@ function dados_pagamento() {
                 <td>${financeiro.descricao_pagamento}</td>   
                 <td>${financeiro.valor_com_juros}</td> 
                 <td>${financeiro.valor_pago}</td>
-                <td><button class = "btn btn-success" onclick="comprovante(${financeiro.id});" ">Comprovante</button></td>
+                
+                <td><button class="btn btn-success" onclick="comprovante(${financeiro.id}, '${nomeCliente}');">Comprovante</button></td>
                 <td><button class = "btn btn-warning" onclick="editar_pagamento(${financeiro.id});" ">Editar</button></td>
                 <td><button class = "btn btn-danger" onclick="excluir_pagamento(${financeiro.id});" ">Excluir</button></td>
             </tr>
@@ -79,7 +70,7 @@ function dados_pagamento() {
         });
     })
     .catch(error => {
-        console.error('Erro:', error);  
+        console.error('Erro:', error);      
     });
 }
 
@@ -110,8 +101,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 descricao_pagamento: descricaoPagamento,
                 valor_com_juros: valorComJuros,
                 valor_pago:valorPago
-
-
             })
         })
         .then(response => {
@@ -130,7 +119,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
-function comprovante(pagamentoId) {
+function comprovante(pagamentoId,shownVal) {
     let result = confirm("DESEJA GERAR O COMPROVANTE PARA ESTE PAGAMENTO?");
     if (result === true) {
         fetch(`/financeiro/comprovante_generator/${pagamentoId}/`, {
@@ -154,7 +143,7 @@ function comprovante(pagamentoId) {
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
-                a.download = `comprovante_${pagamentoId}.pdf`;
+                a.download = `comprovante_${pagamentoId}_${shownVal}.pdf`;
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);

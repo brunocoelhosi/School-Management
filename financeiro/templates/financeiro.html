@@ -16,7 +16,7 @@
         <div class="row justify-content-center">
 
             <div class="col-9">
-                <input id="list" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_pagamento() ">
+                <input placeholder="Selecione o Aluno" id="list" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_pagamento() ">
                 <datalist id="my-list">
                     {% for cliente in clientes %}
                     <option data-value="{{cliente.id}}" value="{{cliente.nome}}"> ID: {{cliente.id}}</option>

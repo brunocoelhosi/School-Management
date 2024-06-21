@@ -96,6 +96,9 @@ function dados_cliente(){
         cursos = document.getElementById('cursos')
         cursos.value = data['cliente']['cursos']
 
+        situacao = document.getElementById('situacao')
+        situacao.value = data['cliente']['situacao']
+
         duracao = document.getElementById('duracao')
         duracao.value = data['cliente']['duracao']
 
@@ -148,6 +151,7 @@ function update_cliente(){
     nascimento_responsavel = document.getElementById('nascimento_responsavel').value
     telefone_responsavel = document.getElementById('telefone_responsavel').value
     cursos = document.getElementById('cursos').value
+    sutacao = document.getElementById('situacao').value
     duracao = document.getElementById('duracao').value
     inicio = document.getElementById('inicio').value
     dias_curso = document.getElementById('dias_curso').value
@@ -181,6 +185,7 @@ function update_cliente(){
             nascimento_responsavel: nascimento_responsavel,
             telefone_responsavel: telefone_responsavel, 
             cursos: cursos, 
+            situacao: situacao,
             duracao: duracao,
             inicio: inicio, 
             dias_curso: dias_curso, 
@@ -213,6 +218,7 @@ function update_cliente(){
             nascimento_responsavel = data['nascimento_responsavel']
             telefone_responsavel = data['telefone_responsavel']
             cursos = data['cursos']
+            situacao = data['situacao']
             duracao = data['duracao']
             inicio = data['inicio']
             dias_curso = data['dias_curso']
@@ -238,25 +244,23 @@ function update_cliente(){
 function calcular() {
     var num1 = Number(document.getElementById("num1").value);
     var num2 = Number(document.getElementById("num2").value);
-    //var elemResult = document.getElementById("resultado");
     document.getElementById("total_calculo").value = parseFloat(num1 * num2).toFixed(2);
-
- 
 }
 
 function excluir_cliente(id) {
 
-    id = +document.getElementById("cliente-select").value
-    console.log(typeof(id))
-    if (typeof id !== 'number') {
-        console.error('ID inválido: ', id);
+    var shownVal = document.getElementById("cliente_select").value;
+    var id_cliente = +document.querySelector("#my-list option[value='"+shownVal+"']").dataset.value;
+    //console.log(typeof(id_cliente))
+    if (typeof id_cliente !== 'number') {
+        console.error('ID inválido: ', id_cliente);
         alert('ID do cliente é inválido.');
         return;
     }
 
     let result = confirm("DESEJA EXCLUIR ESTE CLIENTE?");
     if (result === true) {
-        fetch(`/clientes/excluir_cliente/${id}/`, {
+        fetch(`/clientes/excluir_cliente/${id_cliente}/`, {
             method: 'DELETE',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
@@ -266,8 +270,6 @@ function excluir_cliente(id) {
         .then(response => {
             if (response.ok) {
                 alert("Cliente excluído com sucesso.");
-                //location.reload(); // Recarregar a pagina apos exlcusao
-                //redirect
                 window.history.pushState({}, document.title, "/clientes/");
                 location.reload();
             } else {

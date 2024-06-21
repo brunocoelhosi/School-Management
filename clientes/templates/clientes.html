@@ -20,8 +20,6 @@
             {% endfor %}
         {% endif %}
 
-
-
         <div class="row justify-content-center">
             <div onclick="exibir_form('1')" class="col-sm card-dashboard">
                 <p class="text-card">Cadastrar Aluno</p>
@@ -116,7 +114,7 @@
                         </div>
                         <div class="col-md">
                             <p>Celular:</p>
-                            <input type="text" class="form-control" placeholder="Celular" name="celular" value="{{celular}}">
+                            <input type="text" class="form-control" placeholder="(00) 00000-0000" name="celular" value="{{celular}}">
                         </div>
                     </div>
 
@@ -143,7 +141,7 @@
                         </div>
                         <div class="col-md">
                             <p>Telefone:</p>
-                            <input type="text" class="form-control" placeholder="Telefone" name="telefone_responsavel" value="{{telefone_responsavel}}">
+                            <input type="text" class="form-control" placeholder="(00) 00000-0000" name="telefone_responsavel" value="{{telefone_responsavel}}">
                         </div>
                     </div>
                     
@@ -153,8 +151,23 @@
 					<h4> Informações do Curso</h4>
 					
 					<br>
-					<p>Cursos:</p>
-                    <input type="text" class="form-control" placeholder="Cursos" name="cursos" value="{{cursos}}">
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Cursos:</p>
+                            <input type="text" class="form-control" placeholder="Cursos" name="cursos" value="{{cursos}}">
+                        </div>
+                        <div class="col-md-3">
+                            <p>Situação do aluno:</p>
+                            <select id="situacao" class="form-control" placeholder="Situação" name="situacao" value="{{situacao}}">
+                                <option selected value="Situação">Situação</option>
+                                <option value="Cursando">Cursando</option>
+                                <option value="Concluído">Concluído</option> 
+                                <option value="Interrompido">Interrompido</option>
+                                <option value="Negociação">Negociação</option>
+                            </select>
+                        </div>
+                    </div>
+					
                     <br>
                     <div class="row">
                         <div class="col-md">
@@ -185,13 +198,16 @@
 
                     <div class="row">
                         <div class="col-md">
+                            <p>Valor do material:</p>
+                            <input type="text" id ="material" class="form-control" placeholder="Valor do Material" name="material" value="{{material}}">
+                        </div>
+                        <div class="col-md">
                             <p>Valor da mensalidade:</p>
                             <input type="text" id ="num1" class="form-control" placeholder="Valor da Mensalidade" name="mensalidade" onblur="calcular();" value="{{mensalidade}}">
                         </div>
                         <div class="col-md">
-                            <p>Quantidade de parcelas:</p>
-                            <input type="text" id ="num2" class="form-control" placeholder="Quantidade de Parcelas" name="parcelas" onblur="calcular();" value="{{parcelas}}">
-                            
+                            <p>Qnt. de parcelas:</p>
+                            <input type="text" id ="num2" class="form-control" placeholder="Número de Parcelas" name="parcelas" onblur="calcular();" value="{{parcelas}}">
                         </div>
                         <div class="col-md">
                             <p>Dia para pagamento:</p>
@@ -210,34 +226,23 @@
                 <br>
             </div>
 
-
-            <div id="att_cliente">
-<!--
-                <p></p>
-                <select id="cliente-select"  onchange="dados_cliente()" class="form-control">
-                    {% for cliente in clientes %}
-                    <option value="{{cliente.id}}">{{cliente.nome}} </option>
-                    {% endfor %}
-                </select>
--->
-                
-                
-                    <input id="cliente_select" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_cliente()">
-                    <datalist id="my-list">
-                        {% for cliente in clientes %}
-                        <option data-value="{{cliente.id}}" value="{{cliente.nome}}"> ID: {{cliente.id}}</option>
-                        {% endfor %}
-                    </datalist>
-                    <input type="hidden" name="answer" id="answerInput-hidden">
-              
-
-                
+<!---------------------------------------------------------------------------------------------------->
+            <div id="att_cliente" >  
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <input placeholder="Selecione o Aluno" id="cliente_select" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_cliente()">
+                        <datalist id="my-list">
+                            {% for cliente in clientes %}
+                            <option data-value="{{cliente.id}}" value="{{cliente.nome}}"> ID: {{cliente.id}}</option>
+                            {% endfor %}
+                        </datalist>
+                        <input type="hidden" name="answer" id="answerInput-hidden">
+                    </div>                   
+                </div>
                 <br>
                 <hr>
-
                 <div id="form-att-cliente">
                     <input type="hidden" id="id">
-                    <h4> Dados do Aluno</h4>
                     <div class="row">
                         <div class="col-md">
                             <p>Nome Aluno:</p>
@@ -327,8 +332,23 @@
                     <h4> Informações do Curso</h4>
                     
                     <br>
-                    <p>Cursos:</p>
-                    <input type="text" class="form-control" id="cursos">
+                    <div class="row">
+                        <div class="col-md">
+                            <p>Cursos:</p>
+                            <input type="text" class="form-control"  id="cursos" >
+                        </div>
+                        <div class="col-md-3">
+                            <p>Situação do aluno:</p>
+                            <select id="situacao" class="form-control" id="situacao" >
+                                <option selected value="Situação">Situação</option>
+                                <option value="Cursando">Cursando</option>
+                                <option value="Concluído">Concluído</option> 
+                                <option value="Interrompido">Interrompido</option>
+                                <option value="Negociação">Negociação</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <br>
                     <div class="row">
                         <div class="col-md">
@@ -356,16 +376,18 @@
                     <hr style="background-color:gray;">
                     <br>
                     <h4> Informações de Pagamento</h4>
-
                     <div class="row">
+                        <div class="col-md">
+                            <p>Valor do material:</p>
+                            <input type="text" class="form-control" id="material">
+                        </div>
                         <div class="col-md">
                             <p>Valor da mensalidade:</p>
                             <input type="text" class="form-control" id="mensalidade">
                         </div>
                         <div class="col-md">
-                            <p>Quantidade de parcelas:</p>
+                            <p>Qtd. de parcelas:</p>
                             <input type="text" class="form-control" id="parcelas">
-                            
                         </div>
                         <div class="col-md">
                             <p>Dia para pagamento:</p>
@@ -379,9 +401,7 @@
 
                     <div>
                         <br>
-                        <input onclick="update_cliente()"  type="submit" value="salvar" class="btn btn-success" > 
-
-
+                        <input onclick="update_cliente()" type="submit" value="salvar" class="btn btn-success" > 
                         <a class = "btn btn-danger" data-method="DELETE" onclick="excluir_cliente()">Excluir</a>  
 
                     </div>

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'mapahorario',
     'usuarios',
     'faturamento',
+    'historico',
 ]
 
 MIDDLEWARE = [
@@ -114,8 +115,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-USE_L10N = False
-#SESSION_COOKIE_AGE: 10 * 5
+USE_L10N = True
 
 pt_BR_formats.DATE_FORMAT = "%d/%m/%Y"
 
