@@ -120,19 +120,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 function comprovante(pagamentoId,shownVal) {
-    let result = confirm("DESEJA GERAR O COMPROVANTE PARA ESTE PAGAMENTO?");
-    if (result === true) {
-        fetch(`/financeiro/comprovante_generator/${pagamentoId}/`, {
-            method: 'GET',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': getCookie('csrftoken')
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('OK')
-                return response.blob();
+    
+    Swal.fire({
+        title: "Deseja gerar o comprovante para esse pagamento?",
+        text: "",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar!",
+        confirmButtonText: "Sim!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/financeiro/comprovante_generator/${pagamentoId}/`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+
+                    return response.blob();
+
+
             } else {
                 console.error('Erro ao gerar o comprovante.');
             }
@@ -147,7 +159,13 @@ function comprovante(pagamentoId,shownVal) {
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
-                alert("Comprovante gerado com sucesso.");
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Comprovante gerado com sucesso.",
+                    icon: "success"
+                
+                    });
+                //alert("Comprovante gerado com sucesso.");
                 console.log("Comprovante gerado");
             }
         })
@@ -155,14 +173,24 @@ function comprovante(pagamentoId,shownVal) {
             console.error('Erro:', error);
         });
     } else {
-        alert("Operação cancelada.");
+       // alert("Operação cancelada.");
         console.log("Operação cancelada");
     }
+    }
+    );  
 }
 function excluir_pagamento(pagamentoId) {
 
-    let result = confirm("DESEJA EXCLUIR ESTE REGISTRO?");
-        if (result === true) {
+    Swal.fire({
+        title: "Você tem certeza?",
+        text: "Você não será capaz de reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, exclua esse comprovante!"
+      }).then((result) => {
+        if (result.isConfirmed) {
             fetch(`/financeiro/delete/${pagamentoId}/`, {
                 method: 'DELETE',
                 headers: {
@@ -172,20 +200,30 @@ function excluir_pagamento(pagamentoId) {
             })
             .then(response => {
                 if (response.ok) {
-                    dados_pagamento();  // Recarregar a lista de pagamentos após exclusão
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Comprovante excluído com sucesso.",
+                        icon: "success"
+                      });
+                    dados_pagamento(); //reload lista de pagamentos
                 } else {
-                    console.error('Erro ao excluir o pagamento.');
+                    console.error('Erro ao excluir o comprovante.');
+                    alert("Erro ao excluir o comprovante.");
                 }
             })
             .catch(error => {
                 console.error('Erro:', error);
+                alert("Erro ao excluir o comprovante.");
             });
-            alert("Pagamento excluído com sucesso.");
+    
             console.log("Exclusão Confirmada");
         } else {
-            alert("Exclusão Cancelada.");
             console.log("Exclusão Cancelada");
         }
+        }
+      );
+
+
 }
 
 function editar_pagamento(pagamentoId) {

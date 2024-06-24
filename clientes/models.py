@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Cliente(models.Model):
  
@@ -32,5 +33,6 @@ class Cliente(models.Model):
     dia_pagamento = models.CharField(max_length=50)
     total = models.CharField(max_length=50, null=True)
 
+    data_matricula = models.DateTimeField()
     def __str__(self) -> str:
         return self.nome

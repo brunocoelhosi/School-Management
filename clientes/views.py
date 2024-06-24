@@ -23,7 +23,7 @@ def clientes(request):
     elif request.method == "POST":
         nome = request.POST.get('nome')
         cpf = request.POST.get('cpf')
-        datanascimento = request.POST.get('datanascimento')
+        datanascimento = request.POST.get('datanascimento') or None
         email = request.POST.get('email')
         endereco = request.POST.get('endereco')
         bairro = request.POST.get('bairro')
@@ -34,12 +34,12 @@ def clientes(request):
         celular = request.POST.get('celular')
         nome_responsavel = request.POST.get('nome_responsavel')
         cpf_responsavel = request.POST.get('cpf_responsavel')
-        nascimento_responsavel = request.POST.get('nascimento_responsavel')
+        nascimento_responsavel = request.POST.get('nascimento_responsavel') or None
         telefone_responsavel = request.POST.get('telefone_responsavel')
         cursos = request.POST.get('cursos')
         situacao = request.POST.get('situacao')
         duracao = request.POST.get('duracao')
-        inicio = request.POST.get('inicio')
+        inicio = request.POST.get('inicio') or None
         dias_curso = request.POST.get('dias_curso')
         horarios_curso = request.POST.get('horarios_curso')
         instrutor = request.POST.get('instrutor')
@@ -164,6 +164,8 @@ def update_cliente(request, id):
         cliente.total = total
         
         cliente.save()
+
+        #messages.add_message(request, constants.SUCCESS, 'aaDados atualizados com sucesso!')
         return JsonResponse({'status': '200', 'nome': nome, 'cpf':cpf, 'datanascimento':datanascimento, 'email': email, 'endereco': endereco, 'bairro': bairro, 'cep': cep,
                              'cidade': cidade, 'estado': estado, 'telefone': telefone, 'celular': celular, 'nome_responsavel': nome_responsavel, 'cpf_responsavel': cpf_responsavel,
                              'nascimento_responsavel': nascimento_responsavel, 'telefone_responsavel': telefone_responsavel, 'cursos': cursos, 'situacao': situacao, 'duracao': duracao, 'inicio': inicio,
@@ -177,7 +179,7 @@ def excluir_cliente(request, id):
         try:
             cliente = Cliente.objects.get(id=id)
             cliente.delete()
-            messages.add_message(request, constants.SUCCESS, 'cliente excluido')
+            #messages.add_message(request, constants.SUCCESS, 'cliente excluido')
             return JsonResponse({'status': '200', 'message': 'Cliente excluído com sucesso.'})
         except Cliente.DoesNotExist:
             return JsonResponse({'status': '404', 'message': 'Cliente não encontrado.'})

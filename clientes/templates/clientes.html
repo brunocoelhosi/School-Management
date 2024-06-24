@@ -3,22 +3,36 @@
 {% block 'title' %}Alunos{% endblock %}
 {%block 'head' %}
     <link rel = "stylesheet" href="{% static 'clientes/css/clientes.css' %}">
+    
 {% endblock %}
 
 {% block 'dashboard' %}
        
     <div class="container">
 
-        {% if messages %}
-            {%for i in messages %}
-                <div class = "alert {{i.tags}}" role="alert">
-                    {{i}}
-                </div>
-                <script>
-                    location.reload();
-                </script>
-            {% endfor %}
-        {% endif %}
+        {% for message in messages %}
+            <script>
+
+                if ('warning' === '{{ message.tags }}') {
+                    title = 'Atenção!';
+                } else if ('info' === '{{ message.tags }}') {
+                    title = 'Informação';
+                } else if ('success' === '{{ message.tags }}') {
+                    title = 'Sucesso!';
+                } else if ('error' === '{{ message.tags }}') {
+                    title = 'Erro!';
+                }
+
+                // Exibir mensagem usando SweetAlert2
+                Swal.fire({
+                    icon: '{{ message.tags }}',
+                    title: title,
+                    text: '{{ message }}',
+                    confirmButtonText: 'OK'
+                });
+
+            </script>
+        {% endfor %}
 
         <div class="row justify-content-center">
             <div onclick="exibir_form('1')" class="col-sm card-dashboard">
@@ -199,11 +213,11 @@
                     <div class="row">
                         <div class="col-md">
                             <p>Valor do material:</p>
-                            <input type="text" id ="material" class="form-control" placeholder="Valor do Material" name="material" value="{{material}}">
+                            <input type="text" id ="material" class="form-control" placeholder="Digite um valor" name="material" value="{{material}}">
                         </div>
                         <div class="col-md">
                             <p>Valor da mensalidade:</p>
-                            <input type="text" id ="num1" class="form-control" placeholder="Valor da Mensalidade" name="mensalidade" onblur="calcular();" value="{{mensalidade}}">
+                            <input type="text" id ="num1" class="form-control" placeholder="Digite um valor" name="mensalidade" onblur="calcular();" value="{{mensalidade}}">
                         </div>
                         <div class="col-md">
                             <p>Qnt. de parcelas:</p>
@@ -215,7 +229,7 @@
                         </div>
                         <div class="col-md"> 
                             <p>Valor total do curso:</p>
-                            <input name="total_calculo" id="total_calculo" placeholder="Valor total" class="form-control" value="" type="text">   
+                            <input name="total_calculo" id="total_calculo" placeholder="Digite um valor" class="form-control" value="" type="text">   
                         </div>
                     </div>
                     <br>
@@ -401,7 +415,7 @@
 
                     <div>
                         <br>
-                        <input onclick="update_cliente()" type="submit" value="salvar" class="btn btn-success" > 
+                        <input onclick="update_cliente()" type="submit" value="Salvar" class="btn btn-success" > 
                         <a class = "btn btn-danger" data-method="DELETE" onclick="excluir_cliente()">Excluir</a>  
 
                     </div>

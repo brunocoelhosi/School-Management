@@ -127,7 +127,6 @@ function dados_cliente(){
         total.value = data['cliente']['total']            
      
     })
-    
 
 }
 
@@ -228,13 +227,20 @@ function update_cliente(){
             parcelas = data['parcelas']
             dia_pagamento = data['dia_pagamento']
             total = data['total']
-         
+
             //console.log('Dados alterados com sucesso')
             //var resultado = document.getElementById("resultado_cadastro")
             //resultado.innerHTML = '<div id="resultado_cadastro" class= "alert alert-success" role="alert" style="text-align:center">Cadastro realizado com sucesso!</div>'
-            alert("Dados atualizados com sucesso!");
+            //alert("Dados atualizados com sucesso!");
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Dados atualizados com sucesso!",
+                icon: "success"
+              });
+
         }else{
-            alert('Ocorreu algum erro');
+           // alert('Ocorreu algum erro');
+           alert_error();
         }
 
     })
@@ -257,36 +263,67 @@ function excluir_cliente(id) {
         alert('ID do cliente é inválido.');
         return;
     }
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
 
-    let result = confirm("DESEJA EXCLUIR ESTE CLIENTE?");
-    if (result === true) {
-        fetch(`/clientes/excluir_cliente/${id_cliente}/`, {
-            method: 'DELETE',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': getCookie('csrftoken')
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("Cliente excluído com sucesso.");
-                window.history.pushState({}, document.title, "/clientes/");
-                location.reload();
-            } else {
-                console.error('Erro ao excluir o cliente.');
+    swalWithBootstrapButtons.fire({
+        title: "Você tem certeza?",
+        text: "Você não será capaz de reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, exclua!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/clientes/excluir_cliente/${id_cliente}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    //alert("Cliente excluído com sucesso.");
+                    //
+                    
+                    swalWithBootstrapButtons.fire({
+                        title: "Sucesso!",
+                        text: "Cliente excluído com sucesso.",
+                        icon: "success"
+                    }).then(() => {
+                        // Delay the reload to allow the user to see the success message
+                        //setTimeout(() => {
+                            //window.history.pushState({}, document.title, "/clientes/");
+                            location.reload();
+                        //}, 300); // Adjust this value as needed
+                        
+                    });
+                } else {
+                    console.error('Erro ao excluir o cliente.');
+                    alert("Erro ao excluir o cliente.");
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
                 alert("Erro ao excluir o cliente.");
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert("Erro ao excluir o cliente.");
-        });
-
-        console.log("Exclusão Confirmada");
-    } else {
-        console.log("Exclusão Cancelada");
+            });
+            
+            console.log("Exclusão Confirmada");
+            
+        } else {
+            console.log("Exclusão Cancelada");
+        }
+        }
+      );
+      
     }
-}
 
 function getCookie(name) {
     let cookieValue = null;
@@ -307,8 +344,18 @@ function getCookie(name) {
 function alerta(){
 
     alert("teste")
+    
 }
 
 function limpar_select(){
     cliente_select.value = '';
+}
+
+function alert_error(){
+
+    Swal.fire({
+        title: "Oops...",
+        text: "Ocorreu algum erro!",
+        icon: "error"
+      });
 }
