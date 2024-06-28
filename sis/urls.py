@@ -10,6 +10,7 @@ urlpatterns = [
     path('mapahorario/', include('mapahorario.urls')),
     path('historico/', include('historico.urls')),
     path('auth/', include('usuarios.urls')),
-    path("", lambda request: redirect('/auth/login/'))
+    path("", include('home.urls')),
+    #path("", lambda request: redirect('/auth/login/'))
 
 ]

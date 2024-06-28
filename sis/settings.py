@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'usuarios',
     'faturamento',
     'historico',
+    'home',
 ]
 
 MIDDLEWARE = [
