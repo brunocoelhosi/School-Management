@@ -7,15 +7,29 @@
 <div class = "container">
     <br>
 
-    {% if messages %}
-        {% for i in messages %}
-            <div class = "alert {{i.tags}}" role="alert">
-                {{i}}
-            </div>
-        {% endfor %}
-    {% endif %}
+    {% for message in messages %}
+        <script>
 
+            if ('warning' === '{{ message.tags }}') {
+                title = 'Atenção!';
+            } else if ('info' === '{{ message.tags }}') {
+                title = 'Informação';
+            } else if ('success' === '{{ message.tags }}') {
+                title = 'Sucesso!';
+            } else if ('error' === '{{ message.tags }}') {
+                title = 'Erro!';
+            }
 
+            // Exibir mensagem usando SweetAlert2
+            Swal.fire({
+                icon: '{{ message.tags }}',
+                title: title,
+                text: '{{ message }}',
+                confirmButtonText: 'OK'
+            });
+
+        </script>
+    {% endfor %}
 
     <div class = "row">
         

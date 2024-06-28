@@ -86,8 +86,6 @@ def novo_pagamento(request):
         valor_com_juros=data.get('valor_com_juros')
         valor_pago = data.get('valor_pago')
 
-
-
         cliente = get_object_or_404(Cliente, id=cliente_id)
 
         financeiro = Financeiro.objects.create(cliente=cliente,
@@ -102,17 +100,6 @@ def novo_pagamento(request):
         return JsonResponse({'message': 'Pagamento criado com sucesso.'})
     else:
         return JsonResponse({'error': 'Método não permitido.'}, status=405)
-
-def retorna_dados10(request):
-    id_cliente = request.POST.get('id_cliente')
-
-    cliente = Financeiro.objects.filter(cliente_id=id_cliente)
-
-    cliente_json = json.loads(serializers.serialize('json', cliente))[0]['fields']
-    cliente_id = json.loads(serializers.serialize('json', cliente))[0]['pk']
-
-    data = {'cliente': cliente_json, 'cliente_id': cliente_id}
-    return JsonResponse(data)
 
 def att_cliente(request):
     id_cliente = request.POST.get('id_cliente')
@@ -254,10 +241,6 @@ def comprovante_generator(request, pagamento_id):
         pdf.drawString(2 * cm, height - 13 * cm, "_______________________")
         pdf.drawString(2 * cm, height - 13.5 * cm, "Assinatura")
 
-        #pdf.drawString(12 * cm, height - 13 * cm, "_______________________")
-        #pdf.drawString(14 * cm, height - 14  * cm, "CARIMBO")
-        
-        
         ####
         pdf.drawString(2 * cm, height - 14.8  * cm, "-   -\
                                                             \
@@ -306,9 +289,7 @@ def comprovante_generator(request, pagamento_id):
         pdf.drawString(2 * cm, height - 21.5 * cm, "Detalhamento dos Cursos:")
         pdf.setFont("Helvetica", 10)
         pdf.drawString(2 * cm, height - 22 * cm, f"{dados_pagamento['cliente__cursos']}")
-        #pdf.drawString(2 * cm, height - 9 * cm, "Horário do Curso:")
-        #pdf.drawString(5 * cm, height - 9 * cm, f"{dados_pagamento['cliente__dias_curso']} - {dados_pagamento['cliente__horarios_curso']}")
-        
+       
         # Detalhamento do pagamento
         pdf.setFont("Helvetica-Bold", 10)
         pdf.drawString(2 * cm, height - 23 * cm, "Detalhamento do Pagamento:")
@@ -339,7 +320,6 @@ def comprovante_generator(request, pagamento_id):
         pdf.setFont("Helvetica", 10)
         pdf.drawString(2 * cm, height - 27.5 * cm, "_______________________")
         pdf.drawString(2 * cm, height - 28 * cm, "Assinatura")
-
 
         pdf.showPage()
         pdf.save()

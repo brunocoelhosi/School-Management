@@ -106,7 +106,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         .then(response => {
             if (response.ok) {
                 $('#novoPagamentoModal').modal('hide');
-                alert("Pagamento adicionado com sucesso!");
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Pagamento adicionado com sucesso!",
+                    icon: "success"
+                  });
                 dados_pagamento();  // Recarregar a lista de pagamentos após adição
             } else {
                 console.error('Erro ao adicionar o pagamento.');
@@ -165,7 +169,7 @@ function comprovante(pagamentoId,shownVal) {
                     icon: "success"
                 
                     });
-                //alert("Comprovante gerado com sucesso.");
+                
                 console.log("Comprovante gerado");
             }
         })
@@ -228,8 +232,16 @@ function excluir_pagamento(pagamentoId) {
 
 function editar_pagamento(pagamentoId) {
 
-    let result = confirm("DESEJA EXCLUIR ESTE REGISTRO?");
-        if (result === true) {
+    Swal.fire({
+        title: "Você tem certeza?",
+        text: "Deseja editar este comprovante?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim!"
+      }).then((result) => {
+        if (result.isConfirmed) {
             fetch(`/financeiro/delete/${pagamentoId}/`, {
                 method: 'DELETE',
                 headers: {
@@ -239,20 +251,28 @@ function editar_pagamento(pagamentoId) {
             })
             .then(response => {
                 if (response.ok) {
-                    dados_pagamento();  // Recarregar a lista de pagamentos após exclusão
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Comprovante excluído com sucesso.",
+                        icon: "success"
+                      });
+                    dados_pagamento(); //reload lista de pagamentos
                 } else {
-                    console.error('Erro ao excluir o pagamento.');
+                    console.error('Erro ao excluir o comprovante.');
+                    alert("Erro ao excluir o comprovante.");
                 }
             })
             .catch(error => {
                 console.error('Erro:', error);
+                alert("Erro ao excluir o comprovante.");
             });
-            alert("Pagamento excluído com sucesso.");
+    
             console.log("Exclusão Confirmada");
         } else {
-            alert("Exclusão Cancelada.");
             console.log("Exclusão Cancelada");
         }
+        }
+      );
 }
 
 function getCookie(name) {

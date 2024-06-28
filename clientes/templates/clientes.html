@@ -10,6 +10,8 @@
        
     <div class="container">
 
+        
+
         {% for message in messages %}
             <script>
 
@@ -71,7 +73,7 @@
                     </div>    
                     <br>
                     <p>Endereço:</p>
-                    <input type="text" class="form-control" placeholder="Endereço" name="endereco" value="{{endereco}}">
+                    <input type="text" class="form-control" placeholder="Rua..." name="endereco" value="{{endereco}}">
 
                     <br>					
 					<div class="row">
@@ -173,7 +175,7 @@
                         <div class="col-md-3">
                             <p>Situação do aluno:</p>
                             <select id="situacao" class="form-control" placeholder="Situação" name="situacao" value="{{situacao}}">
-                                <option selected value="Situação">Situação</option>
+                                <option selected value="Nulo">Selecione</option>
                                 <option value="Cursando">Cursando</option>
                                 <option value="Concluído">Concluído</option> 
                                 <option value="Interrompido">Interrompido</option>
@@ -354,7 +356,7 @@
                         <div class="col-md-3">
                             <p>Situação do aluno:</p>
                             <select id="situacao" class="form-control" id="situacao" >
-                                <option selected value="Situação">Situação</option>
+                                <option selected value="Nulo">Selecione</option>
                                 <option value="Cursando">Cursando</option>
                                 <option value="Concluído">Concluído</option> 
                                 <option value="Interrompido">Interrompido</option>

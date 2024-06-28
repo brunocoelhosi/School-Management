@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.utils import timezone
 
 class Cliente(models.Model):
  
@@ -34,5 +35,13 @@ class Cliente(models.Model):
     total = models.CharField(max_length=50, null=True)
 
     data_matricula = models.DateTimeField()
+
     def __str__(self) -> str:
         return self.nome
+    
+    def save(self, *args, **kwargs):
+
+        if not self.data_matricula:
+            self.data_matricula = timezone.now()
+
+        super().save(*args, **kwargs)

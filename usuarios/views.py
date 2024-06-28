@@ -13,6 +13,7 @@ def cadastro(request):
 
 def login(request):
     if request.user.is_authenticated:
+        #messages.add_message(request, constants.SUCCESS, 'Login realizado com sucesso')
         return redirect ('/clientes/')
     status = request.GET.get('status')
     return render(request,'login.html', {'status':status})

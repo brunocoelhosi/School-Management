@@ -15,6 +15,8 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url = '/auth/cadastro')
 def clientes(request):
         
+    
+
     if request.method == "GET":
         status = request.GET.get('status')
         clientes_list = Cliente.objects.all()
@@ -47,6 +49,7 @@ def clientes(request):
         parcelas = request.POST.get('parcelas')
         dia_pagamento = request.POST.get('dia_pagamento')
         total = request.POST.get('total_calculo')
+
 
         cliente = Cliente.objects.filter(Q(cpf=cpf)|Q(nome=nome)) #verifica se ja existe o cpf ou nome cadastrado
 
@@ -83,6 +86,7 @@ def clientes(request):
             parcelas = parcelas,
             dia_pagamento = dia_pagamento,
             total = total,
+
         )
 
         cliente.save()
