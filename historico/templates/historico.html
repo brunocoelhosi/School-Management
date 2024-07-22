@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Histórico{% endblock %}
+{%block 'head' %}
+    <link rel="stylesheet" href="{% static 'historico/css/historico.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+
+    <div class="container">
+        <br>
+        <br>
+        <h4> Histórico do Aluno</h4>
+        <br>
+        
+        <div class="row justify-content-center">
+
+            <div class="col-8">
+                <input placeholder="Selecione o Aluno" id="list" list="my-list" class="form-control" type="text" onfocus = "limpar_select()" onchange="dados_pagamento() ">
+                <datalist id="my-list">
+                    {% for cliente in clientes %}
+                        <option data-value="{{cliente.id}}" value="{{cliente.nome}}"> ID: {{cliente.id}}</option>
+                    {% endfor %}
+                </datalist>
+                <input type="hidden" name="answer" id="answerInput-hidden">
+            </div>
+       
+        </div>
+        
+        <br>
+        <div class = "table-responsive-xl"> 
+        <table class = "table" >
+            <thead>
+                <tr>
+                    <th>Contrato</th>
+                    <th>Ficha do Aluno</th>
+                    <th>Histórico do Aluno</th>
+                    <th>Observações</th>
+
+                </tr>
+               
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button class = "btn btn-primary" onclick="contrato()">Contrato</button></td>
+                    <td><button class = "btn btn-info" onclick="ficha()">Ficha</button></td>
+
+                </tr>
+
+            </tbody>
+           
+        </table>
+        
+        </div>
+        <br>
+
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="novoPagamentoModal" tabindex="-1" role="dialog" aria-labelledby="novoPagamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novoPagamentoModalLabel">Cadastrar Novo Pagamento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="novoPagamentoForm">
+                        <div class="form-group">
+                            <label for="cliente-select-modal">Cliente</label>
+                            <select id="cliente-select-modal" class="form-control">
+                                {% for cliente in clientes %}
+                                    <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+                                {% endfor %}
+                            </select>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="data-vencimento">Data vencimento:</label>
+                            <input type="date" class="form-control" id="data-vencimento" onblur="calcular_juros();" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-pagamento">Data do Pagamento:</label>
+                            <input type="date" class="form-control" id="data-pagamento" timezone="[[timezone]]" onblur="calcular_juros();" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor-mensalidade">Valor da mensalidade:</label>
+                            <input type="text" class="form-control" id="valor-mensalidade" onblur="calcular_juros();" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao-pagamento">Descrição do pagamento:</label>
+                            <input type="text" class="form-control" id="descricao-pagamento" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor-com-juros">Valor da mensalidade com juros:</label>
+                            <input type="text" class="form-control" id="valor-com-juros"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor-pago">Valor pago:</label>
+                            <input type="text" class="form-control" id="valor-pago" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="{% static 'historico/js/historico.js' %}"></script>
+   
+{% endblock%}
+
+
