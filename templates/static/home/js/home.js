@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded',() => {
     new TypeIt('.animated',{
 
@@ -18,3 +19,4 @@ document.addEventListener('DOMContentLoaded',() => {
     .go();
 
 });
+

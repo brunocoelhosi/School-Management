@@ -6,6 +6,48 @@
   font-family: "Poppins" , sans-serif;
 }
 
+a{
+  text-decoration: none !important; 
+}
+
+a.btn-primary:visited{
+  color:white;
+}
+.text-footer{
+
+  color: black;
+  
+}
+.fa{
+
+  color:black;
+}
+
+a:link {
+  color: black;
+}
+
+/* link que foi visitado */
+a:visited {
+   color: black;
+}
+
+/* mouse over */
+a:hover {
+   color: grey;
+}
+
+/* link selecionado */
+a:active {
+   color: #0d6efd;
+}
+
+
+.text-primary {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+}
+
 .home-section .text{
   display: inline-block;
   color: var(--main-color);
@@ -14,15 +56,40 @@
   margin: 18px
 }
 
-.sec-avaliacao{
+.sec-matricula{
+  background-color: whitesmoke;
+  /*padding-bottom: 76px;
+* /
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Faz a seção ocupar toda a altura da viewport */
+  text-align: center; /* Centraliza o texto */
+}
+
+.sec-sobre{
     padding-top: 76px;
+    padding-bottom: 76px;
     background-color: whitesmoke;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Faz a seção ocupar toda a altura da viewport */
+    text-align: center; /* Centraliza o texto */
+
 }
 
-.pt-cadastro{
-    background-color: whitesmoke;
-}
+.sec-servicos{
+  background-color: whitesmoke;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Faz a seção ocupar toda a altura da viewport */
+  text-align: center; /* Centraliza o texto */
+
+}
 
 section{
     display: block;
@@ -79,7 +146,7 @@ padding-left: 40px;
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 } 
-
+ /*
 @media (max-width: 767.98px) { 
     div{
         margin-bottom: 10px;
@@ -91,8 +158,8 @@ padding-left: 40px;
     }
 
     div#matricula{
-        margin-top: -50px; /* Ajuste o valor conforme necessário */
-        padding-top: 100px; /* Compensa o deslocamento negativo */
+        margin-top: -50px; 
+        padding-top: 100px; 
     }
 
     div#previa{
@@ -109,22 +176,23 @@ padding-left: 40px;
   
    
   }
-  
+ 
   @media (min-width: 768px) {   
       .pt-cadastro {
           padding-top: 76px !important;
           padding-bottom: 76px;
       }
-      div#matricula{
+      div#matricula{/*
         margin-top: -50px; /* Ajuste o valor conforme necessário */
-        padding-top: 100px; /* Compensa o deslocamento negativo */
+       /* padding-top: 100px; /* Compensa o deslocamento negativo 
+        
     }
-
+    
 
   
   }
   
-  
+  */
   
 @media (max-width: 575.98px) { 
 
@@ -204,10 +272,12 @@ body {
     max-width: inherit
 }
 
+
 .device,
 .device>.img-fluid {
     position: relative
 }
+
 
 /*
 .btn.btn-primary {

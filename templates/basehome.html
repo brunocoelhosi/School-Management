@@ -18,10 +18,23 @@
 
     <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     
-
-
    
     <link rel="stylesheet" href="../../assets/vendor/aos/dist/aos.css">
+
+    
+
+
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+
 
     {% block 'head' %}{% endblock %}
 
@@ -39,11 +52,11 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item"><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2">Cursos</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2">Serviços</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2">Sobre nós</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2">Contato</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 ">Início</a></li>
+            <li class="nav-item"><a href="#matricula" class="nav-link px-2">Cursos</a></li>
+            <li class="nav-item"><a href="#sobre" class="nav-link px-2">Sobre nós</a></li>
+            <li class="nav-item"><a href="#servicos" class="nav-link px-2">Serviços</a></li>
+            <li class="nav-item"><a href="#contato" class="nav-link px-2">Contato</a></li>
           </ul>
           <div class="col-md-3 text-end">
             <a href="#matricula" class="btn btn-primary">Matricule-se</a>
@@ -59,6 +72,94 @@
 
     {% block 'body' %}
     {% endblock %}
+
+     <!-- Footer -->
+<footer name = "contato" id = "contato" class="text-center text-lg-start bg-body-tertiary text-muted ">
+
+ 
+
+  
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <img src="{% static 'logo2.png' %}" alt="Logo" width="20" height="20" style ="margin-right:10px;">Sis Cursos
+          </h6>
+          <p>
+            Fundada em 1998, o SIS Cursos oferece os mais variados cursos de qualificação profissional e pessoal, serviços de atendimento ao cliente na área de informática.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Navegação
+          </h6>
+          <p><a href="#" class="text-footer">Início</a></p>
+          <p><a href="#matricula" class="text-footer">Cursos</a></p>
+          <p><a href="#sobre" class="text-footer">Sobre nós</a></p>
+          <p><a href="#servicos" class="text-footer">Serviços</a>
+          <p><a href="#contato" class="text-footer">Contato</a>
+            <p><a href="#matricula" class="text-footer">Matricule-se</a>
+
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Redes Sociais
+          </h6>
+          <p><a href="https://www.facebook.com/siscursos" style="text-decoration: none;" ><i class="fab fa-facebook-f me-3"></i>Facebook</a></p>
+          <p><a href="https://www.instagram.com/siscursos" style="text-decoration: none;"><i class="fab fa-instagram me-3"></i>Instagram</a></p>
+          <p><a href="https://www.linkedin.com/company/siscursos/" style="text-decoration: none;"><i class="fab fa-linkedin-in me-3"></i>LinkedIn</a></p>
+          
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contato</h6>
+          <p><a href="https://maps.app.goo.gl/RG6yQatwGSqU8YYGA" style="text-decoration: none;"><i class="fa-solid fa-location-dot me-3"></i>Jardim Brasilia</a></p>
+          <p><a href="https://maps.app.goo.gl/hjTr7aBRsSfxgoor5" style="text-decoration: none;"><i class="fa-solid fa-location-dot me-3"></i>Centro</a></p>
+          <p><a href="https://maps.app.goo.gl/HnqyNVHhQcmxGnes9" style="text-decoration: none;"><i class="fa-solid fa-location-dot me-3"></i>São Jorge</a></p>
+          
+          
+          <p><a href="mailto:siscursos2016@gmail.com" style="text-decoration: none;"><i class="fab fa-google me-3"></i>siscursos2016@gmail.com</a></p>
+          <p><a href="tel:+553432103324" style="text-decoration: none;" ><i class="fas fa-phone me-3"></i>34 32103324</a></p>
+          <p><a href="https://api.whatsapp.com/send?phone=5534996302025&amp;text=Olá, gostaria de mais informações sobre cursos oferecidos." style="text-decoration: none;"><i class="fa-brands fa-whatsapp me-3"></i>34 9 96302025</a></p>
+          
+          
+ 
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+
+    © Copyright 2024
+    <a class="text-reset fw-bold" href="https://www.linkedin.com/in/bruno-coelho-13009a207/">Bruno Coelho.</a>
+    All rights reserved.
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
     
     <script src="{% static 'home/js/home.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
