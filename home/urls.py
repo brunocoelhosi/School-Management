@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 urlpatterns = [
 
     path('', views.home, name = "home"),
+    path('nova_matricula/', views.nova_matricula, name = "nova_matricula"),
 
 ]
 
+    

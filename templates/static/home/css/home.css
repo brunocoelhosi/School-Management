@@ -56,15 +56,27 @@ a:active {
   margin: 18px
 }
 
+.sec-logos{
+
+  padding-top: -500px;
+
+}
+
+
+
+
 .sec-matricula{
   background-color: whitesmoke;
-  /*padding-bottom: 76px;
-* /
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Faz a seção ocupar toda a altura da viewport */
-  text-align: center; /* Centraliza o texto */
+  /*padding-bottom: 76px; */
+
+  margin-top: -50px; /* Ajuste o valor conforme necessário */
+   padding-top: 100px; /* Compensa o deslocamento negativo 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Faz a seção ocupar toda a altura da viewport */
+    /*text-align: center;  Centraliza o texto */
 }
 
 .sec-sobre{

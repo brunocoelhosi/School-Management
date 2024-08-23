@@ -75,7 +75,7 @@ def delete_financeiro(request, pagamento_id):
         return JsonResponse({'error': 'Método não permitido.'}, status=405)
 
 
-def novo_pagamento(request):
+def novo_pagamento(request):    
     if request.method == "POST":
         data = json.loads(request.body)
         cliente_id = data.get('cliente_id')
@@ -165,8 +165,8 @@ def comprovante_generator(request, pagamento_id):
         pdf = canvas.Canvas(response, pagesize=A4)
 
         # Cabeçalho
-        #ALTURA IMG 1.8 /LARGURA 5.5
-        pdf.drawImage(logo, 2 * cm, 27.3 * cm, 5.5 * cm, 1.5 * cm, mask='auto')
+        #ALTURA IMG 1.4 /LARGURA 5.5
+        pdf.drawImage(logo, 2 * cm, 27.3 * cm, 5.5 * cm, 1.4 * cm, mask='auto')
         pdf.drawImage(carimbo, 12 * cm, 15*cm , 7 * cm , 3.5*cm, mask='auto')
 
         pdf.setFont("Helvetica", 10)
@@ -248,7 +248,7 @@ def comprovante_generator(request, pagamento_id):
                                                         -   -")
         ####
 
-        pdf.drawImage(logo, 2 * cm, 12.8 * cm, 5.5 * cm, 1.5 * cm, mask='auto')
+        pdf.drawImage(logo, 2 * cm, 27.3 * cm, 5.5 * cm, 1.4 * cm, mask='auto')
         pdf.drawImage(carimbo, 12 * cm, 0.5*cm , 7 * cm , 3.5*cm, mask='auto')
 
         pdf.setFont("Helvetica", 10)
