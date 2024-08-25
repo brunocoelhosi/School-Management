@@ -10,8 +10,8 @@ a{
   text-decoration: none !important; 
 }
 
-a.btn-primary:visited{
-  color:white;
+a.btn-primary{
+  color:white !important;
 }
 .text-footer{
 
