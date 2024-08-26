@@ -7,7 +7,7 @@
 }
 
 a{
-  text-decoration: none !important; 
+  text-decoration: none !important;
 }
 
 a.btn-primary{
@@ -17,15 +17,8 @@ a.btn-primary{
 a.btn-primary:visited{
   color:white !important;
 }
-.text-footer{
 
-  color: black;
-  
-}
-.fa{
 
-  color:black;
-}
 
 a.link-footer:link {
   color: black !important;
@@ -33,7 +26,11 @@ a.link-footer:link {
 
 /* link que foi visitado */
 a.link-footer:visited {
-   color: black;
+   color: black !important;
+}
+
+a.link-footer:hover{
+  color: grey !important;
 }
 
 /* mouse over */
