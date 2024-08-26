@@ -13,6 +13,10 @@ a{
 a.btn-primary{
   color:white !important;
 }
+
+a.btn-primary:visited{
+  color:white !important;
+}
 .text-footer{
 
   color: black;
@@ -23,12 +27,12 @@ a.btn-primary{
   color:black;
 }
 
-a:link {
-  color: black;
+a.link-footer:link {
+  color: black !important;
 }
 
 /* link que foi visitado */
-a:visited {
+a.link-footer:visited {
    color: black;
 }
 
