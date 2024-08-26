@@ -18,6 +18,10 @@ a.btn-primary:visited{
   color:white !important;
 }
 
+a.btn-primary:link {
+  color: white !important;
+}
+
 
 
 a.link-footer:link {
