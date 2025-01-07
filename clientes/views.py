@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url = '/auth/cadastro')
+@login_required(login_url = '/auth/login')
 def clientes(request):
         
     
