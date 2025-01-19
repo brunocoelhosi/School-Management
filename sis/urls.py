@@ -7,6 +7,7 @@ urlpatterns = [
     path('clientes/', include('clientes.urls')),
     path('financeiro/', include('financeiro.urls')),
     path('faturamento/', include('faturamento.urls')),
+    path('prematricula/', include('prematricula.urls')),
     path('mapahorario/', include('mapahorario.urls')),
     path('historico/', include('historico.urls')),
     path('auth/', include('usuarios.urls')),

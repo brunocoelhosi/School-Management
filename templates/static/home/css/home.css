@@ -209,7 +209,15 @@ a:active {
   padding-bottom: 76px;
   justify-content: space-around;
   text-align: center;
+
+  
   }
+  
+
+.centered-list {
+      list-style-position: inside;
+  }
+  
 @media (max-width: 767.98px) {
   .btnmat {
     margin-top: 20px;

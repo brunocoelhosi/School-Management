@@ -2,8 +2,6 @@
 {% load static %}
 {% block 'title' %}SIS Cursos{% endblock %}
 
-
-
 {% block 'dashboard' %}
 <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
 
@@ -37,16 +35,12 @@
         </div>
         <div class="col-12 col-md-5 col-lg-6 order-md-2" style="text-align: center;">
 
-            <!-- Image 
-            <img src="static\home\foto2.svg" class="img-fluid" id="imghome">-->
             <img src="static\home\fotohome.png" class="img-fluid" id="imghome" alt="Imagem Home">
             
           </div>
       </div> <!-- / .row -->
     </div> <!-- / .container -->
   </section>
-
-
 
   <section class="sec-videos py-0 py-md-0 border-bottom">
     <div class="container">
@@ -70,9 +64,6 @@
             </div>
           </div>
         </div>
-        
-
-
         <div class="col-12 col-md-4 mb-3">
           <div class="icon text-primary mb-3">
             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><path d="M5.5 4h4A1.5 1.5 0 0111 5.5v1A1.5 1.5 0 019.5 8h-4A1.5 1.5 0 014 6.5v-1A1.5 1.5 0 015.5 4zm9 12h4a1.5 1.5 0 011.5 1.5v1a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-1a1.5 1.5 0 011.5-1.5z" fill="#335EEA"></path><path d="M5.5 10h4a1.5 1.5 0 011.5 1.5v7A1.5 1.5 0 019.5 20h-4A1.5 1.5 0 014 18.5v-7A1.5 1.5 0 015.5 10zm9-6h4A1.5 1.5 0 0120 5.5v7a1.5 1.5 0 01-1.5 1.5h-4a1.5 1.5 0 01-1.5-1.5v-7A1.5 1.5 0 0114.5 4z" fill="#335EEA" opacity=".3"></path></g></svg>            </div>
@@ -116,14 +107,8 @@
   </section>
 
   
-  
-
-
-
-
 
   <section name="matricula" id="matricula"  class="sec-matricula pt-8 pt-md-11 " >
-    
 
     <div class="container" >
       <div class="row align-items-center justify-content-between mb-8 mb-md-11">
@@ -278,24 +263,10 @@
 
           <!-- Card -->
           <div class="card shadow-light-lg lift lift-lg cardMatricula" >
-           <!-- <div class="d-flex justify-content-center">
-                <img src="static\home\foto4.png" class="card-img-top" alt="..." style="width: 500px; height: 350px;">
-            </div>
-           Image 
-             -->
-
-           <!-- Imagem
-           <div style="text-align:center">
-            <img src="static\home\cad3.svg" class="img-monitor card-img-top" alt="..."  >
-           </div>
-            
-            -->
 
             <!-- Body -->
             <div  class="card-body">
                 <h5 class="card-title mb-3">Realize sua pré-matricula agora e ganhe <span class="badge text-bg-danger">20% OFF</span> em qualquer curso!</h5>
-              <!--  <h6 class="card-subtitle mb-2 text-muted">Entraremos em contato para conclusão da matricula</h6>-->
-                <!-- Form -->
               <form id="novaMatricula" action="{% url 'nova_matricula' %}" method="POST">{% csrf_token %}
                 <div class="form-floating">
                   <input type="text" class="form-control form-control-flush" id = "cardName" name="cardName" placeholder="Nome Completo">
@@ -397,16 +368,11 @@
   </section>
 
 
-
   <section id="servicos" class="sec-servicos pt-md-11 pt-md-13 bg-gray-200">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 col-md-5 col-lg-6 order-md-1">
 
-          <!-- Image 
-
-          <img src="static\home\serv.svg" class="img-fluid mb-6 mb-md-0" alt="..."  >
--->
           <img src="static\home\servicos.png" class="img-fluid" alt="Imagem Serviços">
         </div>
         
@@ -416,19 +382,21 @@
             <div  class="w3-col m6">
         
               <h4> Ofertamos os seguintes serviços para facilitar seu dia-a-dia: </h4></br>
-                    <li>2ª Via de DETRAN | DMAE | CEMIG | Boletos;</li>
-                    <li>Declaração do Imposto de Renda;</li>
-                    <li>Scanner;</li>
-                    <li>Envio de E-mails;</li>
-                    <li>Pesquisa Escolar;</li>
-                    <li>Digitação de Currículos;</li>
-                    <li>Digitação de Trabalhos | Monografias;</li>
-                    <li>Encadernação | Plastificação;</li>
-                    <li>Impressão (Colorida e P&B);</li>
-                    <li>Xerox (Colorida e P&B);</li>
-                    <li>Apresentações de Slides;</li>
-                    <li>Formatação de Computadores;</li>
-                    <li>Instalação de Softwares.</li>
+              <ul class="centered-list">
+                  <li>2ª Via de DETRAN | DMAE | CEMIG | Boletos;</li>
+                  <li>Declaração do Imposto de Renda;</li>
+                  <li>Scanner;</li>
+                  <li>Envio de E-mails;</li>
+                  <li>Pesquisa Escolar;</li>
+                  <li>Digitação de Currículos;</li>
+                  <li>Digitação de Trabalhos | Monografias;</li>
+                  <li>Encadernação | Plastificação;</li>
+                  <li>Impressão (Colorida e P&B);</li>
+                  <li>Xerox (Colorida e P&B);</li>
+                  <li>Apresentações de Slides;</li>
+                  <li>Formatação de Computadores;</li>
+                  <li>Instalação de Softwares.</li>
+              </ul>
             </div>
           </div>
 

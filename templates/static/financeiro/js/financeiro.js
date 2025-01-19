@@ -183,52 +183,7 @@ function comprovante(pagamentoId,shownVal) {
     }
     );  
 }
-function excluir_pagamento(pagamentoId) {
 
-    Swal.fire({
-        title: "Você tem certeza?",
-        text: "Você não será capaz de reverter isso!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sim, exclua esse comprovante!"
-      }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`/financeiro/delete/${pagamentoId}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRFToken': getCookie('csrftoken')
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    Swal.fire({
-                        title: "Sucesso!",
-                        text: "Comprovante excluído com sucesso.",
-                        icon: "success"
-                      });
-                    dados_pagamento(); //reload lista de pagamentos
-                } else {
-                    console.error('Erro ao excluir o comprovante.');
-                    alert("Erro ao excluir o comprovante.");
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert("Erro ao excluir o comprovante.");
-            });
-    
-            console.log("Exclusão Confirmada");
-        } else {
-            console.log("Exclusão Cancelada");
-        }
-        }
-      );
-
-
-}
 
 function editar_pagamento(pagamentoId) {
 
@@ -273,6 +228,53 @@ function editar_pagamento(pagamentoId) {
         }
         }
       );
+}
+
+function excluir_pagamento(pagamentoId) {
+
+    Swal.fire({
+        title: "Você tem certeza?",
+        text: "Você não será capaz de reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, exclua esse comprovante!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/financeiro/delete/${pagamentoId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Comprovante excluído com sucesso.",
+                        icon: "success"
+                      });
+                    dados_pagamento(); //reload lista de pagamentos
+                } else {
+                    console.error('Erro ao excluir o comprovante.');
+                    alert("Erro ao excluir o comprovante.");    
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert("Erro ao excluir o comprovante");
+            });
+    
+            console.log("Exclusão Confirmada");
+        } else {
+            console.log("Exclusão Cancelada");
+        }
+        }
+      );
+
+
 }
 
 function getCookie(name) {
