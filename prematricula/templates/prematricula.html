@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Pré Matriculas{% endblock %}
+
+{%block 'head' %}
+    <link rel="stylesheet" href="{% static 'prematricula/css/prematricula.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+
+    <div class="container">
+        <br>
+        <br>
+        <h4> Mensagens de Pré-Matriculas</h4>
+        <br>
+        <div class = "table-responsive-xl"> 
+            <table class= "table" border="1">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Fone</th>
+                        <th>Nascimento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for matricula in matriculas %}
+                        <tr>
+                            <td>{{ matricula.nome_aluno }}</td>
+                            <td>{{ matricula.email_aluno }}</td>
+                            <td>{{ matricula.fone_aluno }}</td>
+                            <td>{{ matricula.nasc_aluno }}</td>
+                            <td>
+                                <a class="btn btn-danger" href="{% url 'deletar_mensagem' matricula.id %}" onclick="return confirm('Tem certeza que deseja excluir esta mensagem?');">
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5">Nenhuma mensagem encontrada.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <br>
+
+
+    </div>
+
+
+
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="{% static 'prematricula/js/prematricula.js' %}"></script>
+   
+{% endblock%}
+
+
