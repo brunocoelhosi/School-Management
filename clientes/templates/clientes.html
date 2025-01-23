@@ -36,15 +36,11 @@
             </script>
         {% endfor %}
 
-        <div class="row justify-content-center">
-            <div onclick="exibir_form('1')" class="col-sm card-dashboard">
-                <p class="text-card">Cadastrar Aluno</p>
-            </div> 
-
-            <div onclick="exibir_form('2')" class="col-sm card-dashboard">
-                <p class="text-card">Atualizar Cadastro</p>
-            </div> 
+        <div class="row justify-content-center d-flex" style="padding:40px;gap:30px">
+            <button class="btn btn-primary w-100 col-sm" style="padding:15px" onclick="exibir_form('1')" >Cadastrar Aluno</button>
+            <button class="btn btn-primary w-100 col-sm" style="padding:15px" onclick="exibir_form('2')" >Atualizar Cadastro</button>
         </div>
+
         <br>
 		<h4> Dados do Aluno</h4>
         
@@ -57,7 +53,7 @@
                         </div>
                         <div class="col-md">
                             <p>CPF:</p>
-                            <input type="text" class="form-control" placeholder="___.___.___-__" name="cpf" value="{{cpf}}" required> 
+                            <input type="text" class="form-control" maxlength="11" placeholder="___.___.___-__" name="cpf" value="{{cpf}}" required> 
                         </div>
                     </div>
                     <br>
@@ -215,7 +211,7 @@
                     <div class="row">
                         <div class="col-md">
                             <p>Valor do material:</p>
-                            <input type="text" id ="material" class="form-control" placeholder="Digite um valor" name="material" value="{{material}}">
+                            <input type="text" class="form-control" placeholder="Digite um valor" name="valor_material" value="{{valor_material}}">
                         </div>
                         <div class="col-md">
                             <p>Valor da mensalidade:</p>
@@ -395,7 +391,7 @@
                     <div class="row">
                         <div class="col-md">
                             <p>Valor do material:</p>
-                            <input type="text" class="form-control" id="material">
+                            <input type="text" class="form-control" id="valor_material">
                         </div>
                         <div class="col-md">
                             <p>Valor da mensalidade:</p>

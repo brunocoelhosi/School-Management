@@ -197,7 +197,7 @@ function editar_pagamento(pagamentoId) {
         confirmButtonText: "Sim!"
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`/financeiro/delete/${pagamentoId}/`, {
+            fetch(``, {
                 method: 'DELETE',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',

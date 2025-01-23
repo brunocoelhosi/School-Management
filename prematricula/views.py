@@ -12,7 +12,7 @@ from home.models import Matricula
 def prematricula(request):  
 
     if request.method == "GET":
-        matriculas = Matricula.objects.all()  # Ordena por data, mais recentes primeiro
+        matriculas = Matricula.objects.all()  
         return render(request, 'prematricula.html', {'matriculas': matriculas})
 
 def deletar_mensagem(request, id):

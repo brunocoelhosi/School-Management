@@ -44,6 +44,7 @@ def clientes(request):
         dias_curso = request.POST.get('dias_curso')
         horarios_curso = request.POST.get('horarios_curso')
         instrutor = request.POST.get('instrutor')
+        valor_material = request.POST.get('valor_material')
         mensalidade = request.POST.get('mensalidade')
         parcelas = request.POST.get('parcelas')
         dia_pagamento = request.POST.get('dia_pagamento')
@@ -81,6 +82,7 @@ def clientes(request):
             dias_curso = dias_curso,
             horarios_curso = horarios_curso,
             instrutor = instrutor,
+            valor_material = valor_material,
             mensalidade = mensalidade,
             parcelas = parcelas,
             dia_pagamento = dia_pagamento,
@@ -132,6 +134,7 @@ def update_cliente(request, id):
     dias_curso = body['dias_curso']
     horarios_curso = body['horarios_curso']
     instrutor = body['instrutor']
+    valor_material = body['valor_material']
     mensalidade = body['mensalidade']
     parcelas = body['parcelas']
     dia_pagamento = body['dia_pagamento']
@@ -161,6 +164,7 @@ def update_cliente(request, id):
         cliente.dias_curso = dias_curso
         cliente.horarios_curso = horarios_curso
         cliente.instrutor = instrutor
+        cliente.valor_material = valor_material
         cliente.mensalidade = mensalidade
         cliente.parcelas = parcelas
         cliente.dia_pagamento = dia_pagamento
@@ -172,7 +176,7 @@ def update_cliente(request, id):
         return JsonResponse({'status': '200', 'nome': nome, 'cpf':cpf, 'datanascimento':datanascimento, 'email': email, 'endereco': endereco, 'bairro': bairro, 'cep': cep,
                              'cidade': cidade, 'estado': estado, 'telefone': telefone, 'celular': celular, 'nome_responsavel': nome_responsavel, 'cpf_responsavel': cpf_responsavel,
                              'nascimento_responsavel': nascimento_responsavel, 'telefone_responsavel': telefone_responsavel, 'cursos': cursos, 'situacao': situacao, 'duracao': duracao, 'inicio': inicio,
-                             'dias_curso': dias_curso, 'horarios_curso': horarios_curso, 'instrutor': instrutor, 'mensalidade': mensalidade, 'parcelas':parcelas, 'dia_pagamento':dia_pagamento, 'total': total})
+                             'dias_curso': dias_curso, 'horarios_curso': horarios_curso, 'instrutor': instrutor, 'valor_material':valor_material, 'mensalidade': mensalidade, 'parcelas':parcelas, 'dia_pagamento':dia_pagamento, 'total': total})
     except:
         return JsonResponse({'status': '500'})
     

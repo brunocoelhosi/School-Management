@@ -29,6 +29,7 @@ class Cliente(models.Model):
     dias_curso = models.CharField(max_length=50)
     horarios_curso = models.CharField(max_length=50)
     instrutor = models.CharField(max_length=50)
+    valor_material = models.CharField(max_length=50, blank=True , null = True)
     mensalidade = models.CharField(max_length=50)
     parcelas = models.CharField(max_length=2)
     dia_pagamento = models.CharField(max_length=50)

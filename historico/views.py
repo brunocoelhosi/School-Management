@@ -67,8 +67,6 @@ def contrato_generator(request, clienteId):
             'financeiro__descricao_pagamento', 'financeiro__valor_mensalidade', 'financeiro__valor_com_juros', 'financeiro__valor_pago',
         ).first()
 
-        dados_pagamento['financeiro__data_pagamento'] = dados_pagamento['financeiro__data_pagamento'].strftime('%d/%m/%Y')
-        dados_pagamento['financeiro__data_vencimento'] = dados_pagamento['financeiro__data_vencimento'].strftime('%d/%m/%Y')
         dados_pagamento['datanascimento'] = dados_pagamento['datanascimento'].strftime('%d/%m/%Y')
         dados_pagamento['inicio'] = dados_pagamento['inicio'].strftime('%d/%m/%Y')
         dados_pagamento['data_matricula'] = dados_pagamento['data_matricula'].strftime('%d de %B de %Y / %H:%Mh')
@@ -212,8 +210,7 @@ def ficha_generator(request, clienteId):
             'financeiro__descricao_pagamento', 'financeiro__valor_mensalidade', 'financeiro__valor_com_juros', 'financeiro__valor_pago',
         ).first()
 
-        dados_pagamento['financeiro__data_pagamento'] = dados_pagamento['financeiro__data_pagamento'].strftime('%d/%m/%Y')
-        dados_pagamento['financeiro__data_vencimento'] = dados_pagamento['financeiro__data_vencimento'].strftime('%d/%m/%Y')
+        
         dados_pagamento['datanascimento'] = dados_pagamento['datanascimento'].strftime('%d/%m/%Y')
         dados_pagamento['inicio'] = dados_pagamento['inicio'].strftime('%d/%m/%Y')
 

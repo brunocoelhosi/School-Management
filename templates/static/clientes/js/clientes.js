@@ -114,6 +114,9 @@ function dados_cliente(){
         instrutor = document.getElementById('instrutor')
         instrutor.value = data['cliente']['instrutor']
 
+        valor_material = document.getElementById('valor_material')
+        valor_material.value = data['cliente']['valor_material']
+
         mensalidade = document.getElementById('mensalidade')
         mensalidade.value = data['cliente']['mensalidade']
 
@@ -156,6 +159,7 @@ function update_cliente(){
     dias_curso = document.getElementById('dias_curso').value
     horarios_curso = document.getElementById('horarios_curso').value
     instrutor = document.getElementById('instrutor').value
+    valor_material = document.getElementById('valor_material').value
     mensalidade = document.getElementById('mensalidade').value
     parcelas = document.getElementById('parcelas').value
     dia_pagamento = document.getElementById('dia_pagamento').value
@@ -190,6 +194,7 @@ function update_cliente(){
             dias_curso: dias_curso, 
             horarios_curso: horarios_curso, 
             instrutor: instrutor, 
+            valor_material: valor_material,
             parcelas: parcelas,
             dia_pagamento: dia_pagamento,
             mensalidade: mensalidade, 
@@ -223,6 +228,7 @@ function update_cliente(){
             dias_curso = data['dias_curso']
             horarios_curso = data['horarios_curso']
             instrutor = data['instrutor']
+            valor_material = data['valor_material']
             mensalidade = data['mensalidade']
             parcelas = data['parcelas']
             dia_pagamento = data['dia_pagamento']
