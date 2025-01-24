@@ -3,860 +3,196 @@
 
 {% block 'title' %}Mapa de Horário{% endblock %}
 
-{%block 'head' %}
+{% block 'head' %}
     <link rel="stylesheet" href="{% static 'mapahorario/css/mapahorario.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://unpkg.com/htmx.org"></script>
 
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        td[contenteditable="true"]:focus { background-color: #f0f8ff; outline: none; }
+    </style>
+
+    <script>
+        // Adiciona o CSRF token em todas as requisições HTMX
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            event.detail.headers['X-CSRFToken'] = csrfToken;
+        });
+    </script>
 {% endblock %}
 
 {% block 'dashboard' %}
-
 <div class="container">
-
-
-    
     <div class="row">
         <div onclick="exibir_form('1')" class="col-md card-dashboard">
             <p class="text-card">Sala Heliana</p>
-        </div> 
-
+        </div>
         <div onclick="exibir_form('2')" class="col-md card-dashboard">
             <p class="text-card">Sala Poliana</p>
-        </div> 
+        </div>
     </div>
 
     <div class="container" id="sala1">
-        <table class="comicGreen">
-    
-        <tr>
-            <td>Segunda-feira</td>
-            <td></td>
-            <td>Comp. 01</td>
-            <td>Comp. 02</td>
-            <td>Comp. 03</td>
-            <td>Comp. 04</td>
-            <td>Comp. 05</td>
-            <td>Comp. 06</td>
-            <td>Comp. 07</td>
-            <td>Comp. 08</td>
-            <td>Comp. 09</td>
-            <td>Comp. 10</td>
-            <td>Comp. 11</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>8:00</td>
-            <td>Maria Eduarda</td>
-            <td></td>
-            <td></td>
-            <td>Gessica</td>
-            <td>Armandina</td>
-            <td>Marilene</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>9:00</td>
-            <td>Felipe</td>
-            <td>Nathaly</td>
-            <td></td>
-            <td>Emanuely</td>
-            <td>Nicolly</td>
-            <td>Marilene</td>
-            <td>Robert</td>
-            <td>JOÃO GUILHERME</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>10:00</td>
-            <td>Felipe</td>
-            <td></td>
-            <td>Davy</td>
-            <td></td>
-            <td></td>
-            <td>Marilene</td>
-            <td></td>
-            <td>JOÃO GUILHERME</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>13:00</td>
-            <td></td>
-            <td>Libia</td>
-            <td>Lauriane</td>
-            <td>Gessica</td>
-            <td></td>
-            <td>Thaynara</td>
-            <td>Paulo Roberto</td>
-            <td>Marcella</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>14:00</td>
-            <td>Luiz Felipe</td>
-            <td>Guilherme Vaz</td>
-            <td>Lauriane</td>
-            <td>Matheus Paiva</td>
-            <td>Lucas Lemos</td>
-            <td>Thaynara</td>
-            <td>Paulo Roberto</td>
-            <td>Marcella</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>15:00</td>
-            <td>Luiz Felipe</td>
-            <td>Guilherme Vaz</td>
-            <td>Alex Antonio</td>
-            <td>Larissa</td>
-            <td>Lucas Lemos</td>
-            <td>Thaynara</td>
-            <td>Vitor</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>16:00</td>
-            <td></td>
-            <td>Marcela Peixoto</td>
-            <td></td>
-            <td>Larissa</td>
-            <td></td>
-            <td></td>
-            <td>Vitor</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>17:00</td>
-            <td>Yara </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Terça-feira</td>
-            <td>8:00</td>
-            <td>Armandina</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Claudio (Rpd)</td>
-            <td>Marilene (Rpd)</td>
-            <td></td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>9:00</td>
-            <td>Imad</td>
-            <td>Nathaly</td>
-            <td>Emilli</td>
-            <td></td>
-            <td>Claudio (Rpd)</td>
-            <td>Marilene (Rpd)</td>
-            <td>JOÃO GUILHERME</td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>10:00</td>
-            <td>Davy</td>
-            <td>Fermanda Oliveira</td>
-            <td>Emilli</td>
-            <td></td>
-            <td>Claudio (Rpd)</td>
-            <td>Marilene (Rpd)</td>
-            <td>JOÃO GUILHERME</td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>13:00</td>
-            <td>Eduarda</td>
-            <td></td>
-            <td></td>
-            <td>Gessica</td>
-            <td></td>
-            <td>Isaque</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Paulo Roberto</td>
-            <td>Isabel</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>14:00</td>
-            <td>Josue</td>
-            <td>Matheus Paiva</td>
-            <td>Victor Hugo</td>
-            <td></td>
-            <td>GRAZIELLY</td>
-            <td>Isaque</td>
-            <td>Caio</td>
-            <td>Stephany Camilli</td>
-            <td>Gyovana</td>
-            <td>Paulo Roberto</td>
-            <td>Izabel</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>15:00</td>
-            <td></td>
-            <td></td>
-            <td>Victor Hugo</td>
-            <td></td>
-            <td>GRAZIELLY</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td>Stephany Camilli</td>
-            <td>Gyovana</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>16:00</td>
-            <td>Maria Eduarda</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Quarta-feira</td>
-            <td>8:00</td>
-            <td>Samuel</td>
-            <td>Marilene (Rpd)</td>
-            <td></td>
-            <td>Maria Eduarda</td>
-            <td>Claudio (Rpd)</td>
-            <td>Armandina</td>
-            <td></td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>9:00</td>
-            <td>Nathaly</td>
-            <td>Marilene (Rpd)</td>
-            <td>Fernanda Nunes</td>
-            <td></td>
-            <td>Claudio (Rpd)</td>
-            <td></td>
-            <td>JOÃO GUILHERME</td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>10:00</td>
-            <td>Davy</td>
-            <td>Marilene (Rpd)</td>
-            <td>Gabrielly Ferreira</td>
-            <td>João Paulo</td>
-            <td>Claudio (Rpd)</td>
-            <td></td>
-            <td>JOÃO GUILHERME</td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>13:00</td>
-            <td></td>
-            <td>Libia</td>
-            <td>Gessica</td>
-            <td>Paulo Roberto</td>
-            <td></td>
-            <td>Marcella 17//08</td>
-            <td>Thaynara 10/08</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>14:00</td>
-            <td>Gustavo Mendes</td>
-            <td></td>
-            <td>Marcelo Sobral</td>
-            <td>Paulo Roberto</td>
-            <td></td>
-            <td>Marcella 17//08</td>
-            <td>Thaynara 10/08</td>
-            <td></td>
-            <td>Victor</td>
-            <td>Marcos</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>15:00</td>
-            <td>Vitor Caetano</td>
-            <td>MIKAELLY</td>
-            <td>NICOLLY</td>
-            <td>Erick Lucas</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td>Thaynara 10/08</td>
-            <td>Guilherme 17/08</td>
-            <td>victor</td>
-            <td>Marcos</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>16:00</td>
-            <td>Vitor Caetano</td>
-            <td>MIKAELLY</td>
-            <td>NICOLLY</td>
-            <td>Erick Lucas</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td>Guilherme 17/08</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>17:00</td>
-            <td></td>
-            <td>Yara</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Quinta-feira</td>
-            <td>8:00</td>
-            <td>Armandina</td>
-            <td>Marilene (Rpd)</td>
-            <td></td>
-            <td>Fernanda Nunes</td>
-            <td>Claudio (Rpd)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>9:00</td>
-            <td>Imad</td>
-            <td>Marilene (Rpd)</td>
-            <td>Robert </td>
-            <td>Fernanda Nunes</td>
-            <td>Claudio (Rpd)</td>
-            <td></td>
-            <td>JOÃO GUILHERME</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>10:00</td>
-            <td>Felipe</td>
-            <td>Marilene (Rpd)</td>
-            <td>Davy</td>
-            <td>Fermanda Moreira</td>
-            <td>Claudio (Rpd)</td>
-            <td></td>
-            <td>JOÃO GUILHERME</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>        </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>13:00</td>
-            <td>Fillipi</td>
-            <td>Gessica</td>
-            <td>Eduarda</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Paulo Roberto</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>14:00</td>
-            <td>Fillipi</td>
-            <td>Caio</td>
-            <td>Gustavo Henrique</td>
-            <td>Stephany Camilli</td>
-            <td>Gustavo Pereira</td>
-            <td>Josue</td>
-            <td>Victor Oliveira</td>
-            <td>Paulo Roberto</td>
-            <td>Matheus Paiva</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>15:00</td>
-            <td>Amanda</td>
-            <td>Kayllie F.</td>
-            <td>Gustavo Henrique</td>
-            <td>Stephany Camilli</td>
-            <td>Gustavo Pereira</td>
-            <td>Alex Antonio</td>
-            <td>Victor Oliveira</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>16:00</td>
-            <td>Amanda</td>
-            <td>Kayllie F.</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Sexta-feira</td>
-            <td>8:00</td>
-            <td>Samuel</td>
-            <td>Marilene (Rpd)</td>
-            <td>Armandina</td>
-            <td></td>
-            <td></td>
-            <td>Fermanda Nunes</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>9:00</td>
-            <td>Samuel</td>
-            <td>Marilene (Rpd)</td>
-            <td>Emanuely</td>
-            <td>Nicolly</td>
-            <td></td>
-            <td>Fermanda Nunes</td>
-            <td>JOÃO GUILHERME</td>
-            <td>GABRIEL DE PAULA</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>10:00</td>
-            <td>Gabrielly Ferreira</td>
-            <td>Marilene (Rpd)</td>
-            <td>Joã Paulo</td>
-            <td>Davy</td>
-            <td>Elivan</td>
-            <td></td>
-            <td>JOÃO GUILHERME</td>
-            <td>GABRIEL DE PAULA</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>13:00</td>
-            <td>Gessica</td>
-            <td>Rodrigo</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Paulo Roberto</td>
-            <td></td>
-            <td>Marcella  19/08</td>
-            <td>Larissa</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>14:00</td>
-            <td></td>
-            <td>Rodrigo</td>
-            <td>Marcelo Sobral</td>
-            <td>Marcello</td>
-            <td>João Victor</td>
-            <td>Paulo Roberto</td>
-            <td></td>
-            <td>Marcella 19/08</td>
-            <td>Larissa</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>15:00</td>
-            <td>Marcela Peixoto19/08</td>
-            <td>Vitor Caetano</td>
-            <td></td>
-            <td>Marcello</td>
-            <td>João Victor</td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>16:00</td>
-            <td>Marcela Peixoto</td>
-            <td>Vitor Caetano</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Ana Paula Santos (Rpd)</td>
-            <td>Thayna Santos (Rpd)</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>17:00</td>
-            <td>Gabriella Souza</td>
-            <td></td>
-            <td>Gabrielly Ferreira</td>
-            <td></td>
-            <td>Mauricio 07/03</td>
-            <td>maria eduarda 11/03</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Ana Laura</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Sábado</td>
-            <td>8:00</td>
-            <td>Livia</td>
-            <td>Marcela</td>
-            <td>Marcos Antonio</td>
-            <td>João Vitor</td>
-            <td>Andressa Gabriela</td>
-            <td>Kely Cristina</td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>9:00</td>
-            <td>Livia</td>
-            <td>Marcela</td>
-            <td>Marcos Antonio</td>
-            <td>João Vitor</td>
-            <td>Andressa Gabriela</td>
-            <td>Kely Cristina</td>
-            <td>Elivan</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-    
+        <!-- CSRF Token -->
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Horario</th>
+                        <th>Comp_01</th>
+                        <th>Comp_02</th>
+                        <th>Comp_03</th>
+                        <th>Comp_04</th>
+                        <th>Comp_05</th>
+                        <th>Comp_06</th>
+                        <th>Comp_07</th>
+                        <th>Comp_08</th>
+                        <th>Comp_09</th>
+                        <th>Comp_10</th>
+                        <th>Comp_11</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in schedule %}
+                    <tr>
+                        <td>{{ row.horario }}</td>
 
-    </div>
-    <div class="container" id="sala2">
-        <table class="comicGreen">
-        </table>
-    </div>
+                        <!-- Cada célula com HX POST e CSRF token -->
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_01' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_01 }}">
+                            {{ row.HSeg8comp_01 }}
+                        </td>
 
-    
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_02' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_02 }}">
+                            {{ row.HSeg8comp_02 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_03' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_03 }}">
+                            {{ row.HSeg8comp_03 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_04' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_04 }}">
+                            {{ row.HSeg8comp_04 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_05' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_05 }}">
+                            {{ row.HSeg8comp_05 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_06' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_06 }}">
+                            {{ row.HSeg8comp_06 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_07' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_07 }}">
+                            {{ row.HSeg8comp_07 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_08' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_08 }}">
+                            {{ row.HSeg8comp_08 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_09' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_09 }}">
+                            {{ row.HSeg8comp_09 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_10' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_10 }}">
+                            {{ row.HSeg8comp_10 }}
+                        </td>
+
+                        <td hx-post="{% url 'update_schedule' row.id 'HSeg8comp_11' %}"
+                            hx-trigger="blur"
+                            hx-target="this"
+                            hx-swap="outerHTML"
+                            contenteditable="true"
+                            onfocus="this.style.backgroundColor='#f0f8ff'"
+                            onblur="this.style.backgroundColor='transparent'"
+                            data-initial-value="{{ row.HSeg8comp_11 }}">
+                            {{ row.HSeg8comp_11 }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
 </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="{% static 'mapahorario/js/mapahorario.js' %}"></script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    
-{% endblock%}
-
-
+<script src="{% static 'mapahorario/js/mapahorario.js' %}"></script>
+{% endblock %}
